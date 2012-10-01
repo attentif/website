@@ -1,4 +1,3 @@
-attentif.ch
-===========
+# attentif : atelier - home page
 
-attentif : atelier - home page source
+[Docpad](https://github.com/bevry/docpad) sources for atelier's home page, published on attentif.github.com (http://attentif.ch).
