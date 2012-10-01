@@ -1,0 +1,215 @@
+@import 'nib'
+
+global-reset()
+
+@font-face
+  font-family: 'Museo Sans Rounded'
+  font-weight: normal
+  font-style: normal
+  src: url('/fonts/MuseoSansRounded-300.eot')
+  src: url('/fonts/MuseoSansRounded-300.eot?#iefix') format('embedded-opentype'), url('/fonts/MuseoSansRounded-300.woff') format('woff'), url('/fonts/MuseoSansRounded-300.ttf') format('truetype')
+
+@font-face
+  font-family: 'Museo Sans Rounded'
+  font-weight: bold
+  font-style: normal
+  src: url('/fonts/MuseoSansRounded-700.eot')
+  src: url('/fonts/MuseoSansRounded-700.eot?#iefix') format('embedded-opentype'), url('/fonts/MuseoSansRounded-700.woff') format('woff'), url('/fonts/MuseoSansRounded-700.ttf') format('truetype')
+
+basefont()
+  font-family: Georgia, serif //"Calluna",
+  font-size: 18px //15px
+  line-height: 1.5em
+
+transform-style()
+  -webkit-transform-style: arguments
+  -moz-transform-style: arguments
+
+*
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+
+html
+  height: 100%
+
+  &.no-js
+    h1 a
+      cursor: default
+  &.js
+    .fade
+      opacity: 0 // fade in with code
+      transition: opacity 1s ease
+      &.visible
+        opacity: 1
+    #video-fallback
+      display: none
+
+body
+  height: 100%
+  basefont()
+  color: black
+  background-color: transparent
+
+select, input, textarea, button
+  basefont()
+
+a
+  color: black
+  text-decoration: underline
+  &:hover, &:focus
+    text-decoration: none
+
+heading()
+  font-family: "Museo Sans Rounded", Calibri, Geneva, Verdana, sans-serif
+  margin: 1em 0 0.65em 0
+  &:first-child
+    margin-top: 0
+
+h1
+  heading()
+  font-size: 1.6em
+  font-weight: bold
+  text-transform: lowercase
+
+h2
+  heading()
+  font-size: 1.08em
+  font-weight: normal
+  text-transform: uppercase
+
+p
+  margin: 0.75em 0 1em 0
+  &:first-child
+    margin-top: 0
+  &:last-child
+    margin-bottom: 0
+
+strong
+  font-weight: bold
+
+em
+  font-style: italic
+
+.attentif
+  font-family: Georgia, serif
+  font-weight: bold
+  letter-spacing: -0.075em
+  padding-right: 0.075em
+
+#main-container
+  background: transparent url('/images/natural_paper_transparent.png')
+
+#main
+  width: 100%
+  margin: 0 auto
+
+#pageHeader
+  margin-right: 81px
+  padding-top: 20px
+  text-align: center
+
+content-text()
+  a:hover, a:focus
+    text-shadow: 0 0 4px white
+
+  ul
+    margin: -0.5em 0 0.75em 0 // expecting a paragraph before by default
+    padding-left: 1.35em
+    text-indent: -1.35em
+    list-style: none
+    &:first-child
+      margin-top: 0
+    &:last-child
+      margin-bottom: 0
+
+    li
+      margin-bottom: 0.25em
+      &:before
+        content: "\2014\a0\a0"
+
+#sections
+  margin: 0 auto
+  width: 90%
+  text-align: center
+
+  *
+    transform-style: preserve-3d
+
+  section
+    content-text()
+
+    h1
+      display: inline-block
+      margin: 0 0 0.2em 0
+
+      a
+        padding: 0 15px
+        text-decoration: none
+
+  .dash
+    padding: 5px 0
+
+  .dashes
+    padding-bottom: 5px
+    .dash
+      display: block
+      margin: 0 auto 0 auto
+
+.contact-details
+  text-align: center
+  .vcard
+    margin-top: 0.5em
+    font-weight: bold
+    a
+      text-decoration: none
+
+.tip-content
+  margin: 0.8em 0 0 0
+
+#powerTip
+  max-width: 400px
+  padding: 20px
+  white-space: normal
+  content-text()
+  a
+    color: white
+  .contact-details
+    .vcard
+      text-align: right
+
+#video-container
+  position: fixed
+  top: -50%
+  left: -50%
+  width: 200%
+  height: 200%
+  z-index: -10
+
+#video
+  display: none // always shown via JS
+
+#video, #video-fallback
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  margin: auto
+  min-width: 50%
+  min-height: 50%
+
+@media (min-width: 750px)
+  #main
+    width: 500px
+  #pageHeader
+    margin-right: 37px
+    text-align: right
+  #sections
+    margin: 0 0 0 auto
+    width: 200px
+  .tip-content
+    margin-left: -100px
+    width: 400px
+  html.js .tip-content
+    display: none
