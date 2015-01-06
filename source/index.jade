@@ -1,8 +1,4 @@
----
-name: 'index'
----
-
-doctype 5
+doctype html
 html.no-js(lang='fr')
   head
     meta(charset='UTF-8')
@@ -10,43 +6,41 @@ html.no-js(lang='fr')
     meta(name='description', content='Atelier de design et développement logiciel à lucrativité limitée, basé à Genève, Suisse')
     meta(name='author', content='Simon Goumaz')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='stylesheet', type='text/css', href='/vendor/jquery.powertip.css')
-    link(rel='stylesheet', type='text/css', href='style.css')
+    link(rel='icon', href='/media/favicon.ico', type='image/x-icon')
+    link(rel='stylesheet', type='text/css', href='/scripts/vendor/jquery.powertip.css')
+    link(rel='stylesheet', type='text/css', href='/style.css')
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js')
-    script(src='/vendor/modernizr.min.js')
-    script(src='/vendor/jquery.powertip.min.js')
-    script(src='/vendor/spin.min.js')
+    script(src='/scripts/vendor/modernizr.min.js')
+    script(src='/scripts/vendor/jquery.powertip.min.js')
+    script(src='/scripts/vendor/spin.min.js')
 
   body
     #main-container.fade
       #main
         header#pageHeader
-          img#logo(src='/images/logo-400.png', alt='attentif')
-
-        //- .debug(style= 'overflow: scroll')= require('util').inspect(getCollection('sections').toJSON())
-        - var sections = getCollection('sections').toJSON()
+          img#logo(src='/media/logo-400.png', alt='attentif')
 
         #sections
           each section in sections
-            img.dash(src='/images/dash.png', alt='-')
+            img.dash(src='/media/dash.png', alt='-')
             section(id='#{section.sectionId}')
               h1
                 a.tip(href='#', data-powertiptarget='#{section.sectionId}-content')= section.title
-              .tip-content(id='#{section.sectionId}-content')!= section.contentRendered
+              .tip-content(id='#{section.sectionId}-content')!= section.contents
           .dashes
-            img.dash(src='/images/dash.png', alt='-')
-            img.dash(src='/images/dash.png', alt='-')
-            img.dash(src='/images/dash.png', alt='-')
+            img.dash(src='/media/dash.png', alt='-')
+            img.dash(src='/media/dash.png', alt='-')
+            img.dash(src='/media/dash.png', alt='-')
 
 
     #video-container
       video#video.fade(autoplay loop)
-        source(src='/branches.mp4', type='video/mp4')
-        source(src='/branches.ogv', type='video/ogg')
-      img#video-fallback(src='/images/branches-light.jpg', alt='branches dans la brise')
+        source(src='/media/branches.mp4', type='video/mp4')
+        source(src='/media/branches.ogv', type='video/ogg')
+      img#video-fallback(src='/media/branches.jpg', alt='branches dans la brise')
 
-    script(src='/index.js')
-    script
+    script(src='/scripts/index.js')
+    script.
       var _gaq=[["_setAccount","UA-29888210-1"],["_trackPageview"],["_trackPageLoadTime"]];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
       g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";

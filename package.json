@@ -1,23 +1,24 @@
 {
-  "name": "attentif.ch",
-  "version": "1.0.1",
-  "description": "",
+  "name": "attentif-website",
+  "private": true,
+  "version": "1.1.0",
+  "description": "attentif : atelier website",
   "homepage": "http://attentif.ch",
   "keywords": [
     "attentif",
     "atelier",
-    "website",
-    "docpad"
+    "website"
   ],
   "author": "Simon Goumaz <simon@attentif.ch> (http://attentif.ch)",
-  "dependencies": {
-    "docpad": "6.x",
-    "docpad-plugin-jade": "2.x",
-    "docpad-plugin-markdown": "2.x",
-    "docpad-plugin-stylus": "2.x"
+  "devDependencies": {
+    "metalsmith": "^1.0.1",
+    "metalsmith-collections": "^0.6.0",
+    "metalsmith-ignore": "^0.1.2",
+    "metalsmith-jade": "git+ssh://git@github.com:MaxBareiss/metalsmith-jade.git",
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-stylus": "^0.2.1"
   },
-  "engines" : {
-    "node": ">=0.10.0",
-    "docpad": "6.x"
+  "engines": {
+    "node": ">=0.10.0"
   }
 }

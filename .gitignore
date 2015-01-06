@@ -1,3 +1,5 @@
 node_modules
-out
+build
 .docpad.db
+npm-debug.log
+website.iml
