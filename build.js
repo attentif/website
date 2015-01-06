@@ -1,11 +1,12 @@
-var Metalsmith = require('metalsmith'),
+var metalsmith = require('metalsmith')(__dirname),
     collections = require('metalsmith-collections'),
     ignore = require('metalsmith-ignore'),
     jade = require('metalsmith-jade'),
     markdown = require('metalsmith-markdown'),
-    stylus = require('metalsmith-stylus');
+    stylus = require('metalsmith-stylus'),
+    watch = process.argv[2] === 'watch' ? require('metalsmith-watch') : null;
 
-new Metalsmith(__dirname)
+metalsmith
     .source('./source')
     .destination('./build')
     .clean(false) // to keep .git, CNAME etc.
@@ -18,10 +19,13 @@ new Metalsmith(__dirname)
     .use(markdown())
     .use(jade({useMetadata: true}))
     .use(stylus({nib: true}))
-    .use(ignore('content/sections/*'))
-    .build(onComplete);
+    .use(ignore('content/sections/*'));
 
-function onComplete(err) {
+if (watch) {
+  metalsmith.use(watch());
+}
+
+metalsmith.build(function (err) {
   if (err) { return console.error(err); }
   console.log('OK');
-}
+});
