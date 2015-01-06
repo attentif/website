@@ -1,3 +1,3 @@
-# attentif : atelier - home page
+# attentif : atelier — website
 
-[Docpad](https://github.com/bevry/docpad) sources for the atelier's home page, published on attentif.github.com (http://attentif.ch).
+[Metalsmith](http://www.metalsmith.io) sources for the atelier's website, published on attentif.github.io (i.e. http://attentif.ch).
