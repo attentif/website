@@ -1,12 +1,11 @@
 jQuery(document).ready(function($) {
-
   // tooltip setup
   $tip = $('a.tip');
   $tip.click(function(e) {
     // links are only there to allow tooltips on touchscreens
     e.preventDefault();
-  })
-  $tip.on('mouseenter', function(e) {
+  });
+  $tip.on('mouseenter', function() {
     // HACK (powerTip doesn't currently allow canceling):
     // hide tooltip if section content already visible (see CSS media queries)
     $('#powerTip').css('z-index', $(window).width() < 750 ? '-1000' : '2');

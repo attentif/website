@@ -3,3 +3,4 @@ build
 .docpad.db
 npm-debug.log
 website.iml
+.idea

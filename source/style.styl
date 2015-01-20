@@ -2,33 +2,54 @@
 
 global-reset()
 
-@font-face
-  font-family: 'Museo Sans Rounded'
-  font-weight: normal
-  font-style: normal
-  src: url('/fonts/MuseoSansRounded-300.eot')
-  src: url('/fonts/MuseoSansRounded-300.eot?#iefix') format('embedded-opentype'), url('/fonts/MuseoSansRounded-300.woff') format('woff'), url('/fonts/MuseoSansRounded-300.ttf') format('truetype')
+// VARIABLES
 
-@font-face
-  font-family: 'Museo Sans Rounded'
-  font-weight: bold
-  font-style: normal
-  src: url('/fonts/MuseoSansRounded-700.eot')
-  src: url('/fonts/MuseoSansRounded-700.eot?#iefix') format('embedded-opentype'), url('/fonts/MuseoSansRounded-700.woff') format('woff'), url('/fonts/MuseoSansRounded-700.ttf') format('truetype')
+// colors
+
+$black = rgba(0, 0, 0, 0.9)
+$white = #FFF
+
+// typography
+
+$visual-font = 'Atlas Typewriter', Inconsolata, Consolas, 'Courier New', Courier, monospace
+$informative-font = 'Atlas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif
+$classic-font = 'Sabon LT Std', 'Times New Roman', Times, serif
+
+/*@font-face*/
+  /*font-family: 'Museo Sans Rounded'*/
+  /*font-weight: normal*/
+  /*font-style: normal*/
+  /*src: url('/fonts/MuseoSansRounded-300.eot')*/
+  /*src: url('/fonts/MuseoSansRounded-300.eot?#iefix') format('embedded-opentype'), url('/fonts/MuseoSansRounded-300.woff') format('woff'), url('/fonts/MuseoSansRounded-300.ttf') format('truetype')*/
+
+/*@font-face*/
+  /*font-family: 'Museo Sans Rounded'*/
+  /*font-weight: bold*/
+  /*font-style: normal*/
+  /*src: url('/fonts/MuseoSansRounded-700.eot')*/
+  /*src: url('/fonts/MuseoSansRounded-700.eot?#iefix') format('embedded-opentype'), url('/fonts/MuseoSansRounded-700.woff') format('woff'), url('/fonts/MuseoSansRounded-700.ttf') format('truetype')*/
 
 basefont()
-  font-family: Georgia, serif //"Calluna",
+  font-family: $visual-font
   font-size: 16px //15px
-  line-height: 1.5em
+  line-height: 1.5
 
 transform-style()
   -webkit-transform-style: arguments
   -moz-transform-style: arguments
 
+selection()
+  color: #000
+  background-color: rgba(255, 255, 0, 0.5)
+
 *
   padding: 0
   margin: 0
   box-sizing: border-box
+  &::-moz-selection
+    selection()
+  &::selection
+    selection()
 
 html
   height: 100%
@@ -48,20 +69,40 @@ html
 body
   height: 100%
   basefont()
-  color: black
-  background-color: transparent
+  color: $black
+  background-color: #AAA
 
 select, input, textarea, button
   basefont()
+  color: $black
+  font-family: $visual-font
+
+button
+  margin: 0 0.75em 0 0
+  border: none
+  border-radius: 2px
+  padding: 0.25em
+  background-color: rgba(0, 0, 0, 0.06)
+  font-size: 0.9em
+  //font-weight: 300;
+  line-height: 1
+  font-variant: all-small-caps
+  cursor: pointer
+
+  &:hover, &:focus, &:active
+    color: $white
+    background-color: rgba(0, 0, 0, 0.4)
+
 
 a
-  color: black
+  color: $black
   text-decoration: underline
   &:hover, &:focus
     text-decoration: none
 
 heading()
-  font-family: "Museo Sans Rounded", Calibri, Geneva, Verdana, sans-serif
+  font-family: $visual-font
+  font-weight: 100 !important
   margin: 1em 0 0.65em 0
   &:first-child
     margin-top: 0
@@ -91,14 +132,15 @@ strong
 em
   font-style: italic
 
+.keyword
+  font-variant: small-caps
+
 .attentif
-  font-family: Georgia, serif
+  font-family: $visual-font
   font-weight: bold
-  letter-spacing: -0.075em
-  padding-right: 0.075em
 
 #main-container
-  background: transparent url('/media/transparent-paper.png')
+  background: url('/media/transparent-paper.png') fixed rgba(0, 0, 0, 0.5)
 
 #main
   width: 100%
@@ -173,7 +215,7 @@ content-text()
   white-space: normal
   content-text()
   a
-    color: white
+    color: $white
   .contact-details
     .vcard
       text-align: right
@@ -213,3 +255,48 @@ content-text()
     width: 400px
   html.js .tip-content
     display: none
+
+.debug
+  margin: 0 -100px
+  padding: 100px 0 200px
+  text-align: center
+  .question
+    font-family: $classic-font
+    font-size: 2em
+    line-height: 1.1
+  .title, .text, .question
+    margin-bottom: 3em
+  .text
+    padding: 1rem;
+    border-radius: 2px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: left
+
+#header
+  position: fixed
+  bottom: 0 //-9px
+  width: 100%
+  /*border-bottom: 12px dashed $black*/
+  .title
+    position: relative
+    margin: 0 auto
+    width: 700px
+    font-family: "Atlas Typewriter"
+    font-size: 2em
+    font-weight: 900
+    letter-spacing: -0.04em;
+    &:before, &:after
+      position: absolute
+      width: 200%
+      //content: '\00a0— — — — — — — — — — — — — — — — — — — — — — — — — — —\00a0'
+      overflow: hidden
+    &:before
+      margin-left: -200%
+      text-align: right
+      content: '>\00a0'
+    /*&:after
+      margin-right: -200%
+      text-align: left
+      content: '<'*/
+

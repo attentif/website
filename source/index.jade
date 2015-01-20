@@ -16,11 +16,45 @@ html.no-js(lang='fr')
 
   body
     #main-container.fade
+      header#header
+        .title.
+          a* at* att* | attentif : atelier*
       #main
-        header#pageHeader
+        //- header#pageHeader
           img#logo(src='/media/logo-400.png', alt='attentif')
 
-        #sections
+        .debug
+          .question
+            p.
+              Does being asked personal questions online make you wary?
+            p
+              button Yes
+              button No
+          .question
+            p.
+              <em>«You can only improve what you can measure.»</em>
+            p
+              button I agree
+              button I disagree
+          .question
+            p.
+              Do you make a difference between<br> <span class="keyword">work</span> and <span class="keyword">play</span>?
+            p
+              button Yes
+              button No
+          p.text.
+            <strong>Software.</strong> I craft client, server and peer-to-peer apps and tools. Beautiful code in service to joy and truth.<br><br>
+
+            <strong>User experience.</strong> Interaction design, user research, information architecture, content strategy.<br><br>
+
+            <strong>Coaching & consulting.</strong> I have over 10 years of experience with sustainable development.<br><br>
+
+            <strong>Anything true and beautiful*.</strong><br><br>
+
+            * Maybe I shouldn't make such a bold claim. Maybe I'd better stick to my tried and tested areas of expertise, where I can be reliably good. <em>"Do one thing and do it well."</em><br>
+            But maybe I can bring joy and truth in other areas too, and serve my purpose better by doing completely different things that I don't even know about today. This is an invitation.
+
+        //- #sections
           each section in sections
             img.dash(src='/media/dash.png', alt='-')
             section(id='#{section.sectionId}')
