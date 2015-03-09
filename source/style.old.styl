@@ -11,8 +11,8 @@ $white = #FFF
 
 // typography
 
-$visual-font = 'GT Cinetype Trial', 'Atlas Grotesk', 'Atlas Typewriter', Inconsolata, Consolas, 'Courier New', Courier, monospace
-$informative-font = 'GT Cinetype Trial', 'Atlas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif
+$visual-font = 'Atlas Grotesk', 'Atlas Typewriter', Inconsolata, Consolas, 'Courier New', Courier, monospace
+$informative-font = 'Atlas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif
 $classic-font = 'GT Sectra Trial', 'Sabon LT Std', 'Times New Roman', Times, serif
 
 /*@font-face*/
@@ -283,16 +283,14 @@ content-text()
     left: 50%
   .text-alt
     position: absolute
-    top: 0
-    // Sectra vs Atlas G: top: -0.05em
+    top: -0.05em
     left: 0
     text-align: right
     font-family: $classic-font
-    font-weight: 300
-    font-size: 1.08em
+    font-size: 1.07em
     //line-height: 1.401869159
     strong
-      font-weight: 700
+      font-weight: 800
 .test
   position: relative
   padding-top: 0
@@ -303,13 +301,12 @@ content-text()
   width: 100%
   /*border-bottom: 12px dashed $black*/
   .subtitle
-    font-family: 'GT Cinetype Trial', "Atlas Typewriter"
-    font-size: 2em
+    font-family: "Atlas Typewriter"
   .title
     position: fixed
     bottom: 0
     left: 0.1em
-    font-family: 'GT Sectra Trial', 'GT Cinetype Trial Mono', "Atlas Typewriter"
+    font-family: "Atlas Typewriter"
     font-size: 30vw
     line-height: 1
     font-weight: 900
