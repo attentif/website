@@ -7,12 +7,9 @@ html.no-js(lang='fr')
     meta(name='author', content='Simon Goumaz')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='icon', href='/media/favicon.ico', type='image/x-icon')
-    link(rel='stylesheet', type='text/css', href='/scripts/vendor/jquery.powertip.css')
     link(rel='stylesheet', type='text/css', href='/style.css')
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js')
     script(src='/scripts/vendor/modernizr.min.js')
-    script(src='/scripts/vendor/jquery.powertip.min.js')
-    script(src='/scripts/vendor/spin.min.js')
 
   body
     #main-container.fade
@@ -21,74 +18,12 @@ html.no-js(lang='fr')
           at*
         .subtitle.
           attentif : atelier*
-      #main
-        //- header#pageHeader
-          img#logo(src='/media/logo-400.png', alt='attentif')
-
-        .debug
-          .question
-            p.
-              Does being asked personal questions online make you wary?
-              (And, do you fancy lowercase figures such as 1234567890?)
-            p
-              button Yes
-              button No
-          .question
-            p.
-              <em>«You can only improve what you can measure.»</em>
-            p
-              button I agree
-              button I disagree
-          .question
-            p.
-              Do you make a difference between<br> <span class="keyword">work</span> and <span class="keyword">play</span>?
-            p
-              button Yes
-              button No
-        .debug.test
-          p.text.
-            <strong>1234567890</strong> 1234567890<br><br>
-
-            <strong>Art.</strong> On the written page, the backlit screen, into the vibrating air or within the space held over earth.<br><br>
-
-            <strong>Software.</strong> I craft client, server and peer-to-peer apps and tools. Code that bows into service to joy, beauty and truth.<br><br>
-
-            <strong>User experience.</strong> Interaction design, user research, information architecture, content strategy. Make what you're here for seen, heard, felt.<br><br>
-
-            <strong>Coaching & consulting.</strong> I have over 10 years of experience with sustainable development.<br><br>
-
-            <strong>Anything true and beautiful.*</strong><br><br>
-
-            <br>
-            * That is an invitation.
-          p.text-alt.
-            <strong>1234567890</strong> 1234567890<br><br>
-
-            <strong>Art.</strong> On the written page, the backlit screen, into the vibrating air or within the space held over earth.<br><br>
-
-            <strong>Software.</strong> I craft client, server and peer-to-peer apps and tools. Code that bows into service to joy, beauty and truth.<br><br>
-
-            <strong>User experience.</strong> Interaction design, user research, information architecture, content strategy. Make what you're here for seen, heard, felt.<br><br>
-
-            <strong>Coaching & consulting.</strong> I have over 10 years of experience with sustainable development.<br><br>
-
-            <strong>Anything true and beautiful.*</strong><br><br>
-
-            <br>
-            * That is an invitation.
-
-        //- #sections
-          each section in sections
-            img.dash(src='/media/dash.png', alt='-')
-            section(id='#{section.sectionId}')
-              h1
-                a.tip(href='#', data-powertiptarget='#{section.sectionId}-content')= section.title
-              .tip-content(id='#{section.sectionId}-content')!= section.contents
-          .dashes
-            img.dash(src='/media/dash.png', alt='-')
-            img.dash(src='/media/dash.png', alt='-')
-            img.dash(src='/media/dash.png', alt='-')
-
+      main#main
+        each section in sections
+          section(id='#{section.sectionId}')
+            if section.title
+              h1!= section.title
+            != section.contents
 
     #video-container
       video#video.fade(autoplay loop)

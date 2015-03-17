@@ -12,7 +12,7 @@ metalsmith
     .clean(false) // to keep .git, CNAME etc.
     .use(collections({
       sections: {
-        pattern: 'content/sections/*.*',
+        pattern: 'content/*.*',
         sortBy: 'sectionOrder'
       }
     }))
