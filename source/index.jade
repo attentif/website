@@ -16,14 +16,22 @@ html.no-js(lang='fr')
       header#header
         .title.
           at*
-        .subtitle.
-          attentif : atelier*
       main#main
         each section in sections
-          section(id='#{section.sectionId}')
+          section(id='#{section.id}')
             if section.title
               h1!= section.title
             != section.contents
+      footer#footer
+        ul.coordinates
+          li.practice-name attentif : atelier*
+          li.name Simon Goumaz
+          li.address
+            | arcade des Pépins de la Pastèque<br>
+            | rue des Voisins 20, 1205 Geneva
+          li.phone +41 (0)79 385 71 20
+          li.email
+            a(href="mailto:simon@attentif.ch") simon@attentif.ch
 
     #video-container
       video#video.fade(autoplay loop)

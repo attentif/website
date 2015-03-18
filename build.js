@@ -13,7 +13,7 @@ metalsmith
     .use(collections({
       sections: {
         pattern: 'content/*.*',
-        sortBy: 'sectionOrder'
+        sortBy: 'name'
       }
     }))
     .use(markdown())

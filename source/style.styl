@@ -7,9 +7,19 @@ $black = rgba(0, 0, 0, 0.9)
 $white = #FFF
 
 $base-font-family = Atlas Typewriter, Inconsolata, Consolas, 'Courier New', Courier, monospace
+$bold-weight = 500
 $base-font-size = 16px
 $base-line-height = 23px // = 1.4375
-$base-letter-width = round($base-font-size * 0.6875) // empirically determined
+$base-letter-width = round($base-font-size * 0.64) // empirically determined
+
+lines(n)
+  (n * $base-line-height)
+
+chars(n)
+  (n * $base-letter-width)
+
+$body-text-width = chars(60)
+$body-text-h-padding = chars(2)
 
 
 // BASE
@@ -19,6 +29,7 @@ basefont()
   font-size: $base-font-size
   line-height: $base-line-height
 
+// TODO: review compatibility
 transform-style()
   -webkit-transform-style: arguments
   -moz-transform-style: arguments
@@ -38,9 +49,6 @@ selection()
 
 html
   height: 100%
-  &.no-js
-    h1 a
-      cursor: default
   &.js
     .fade
       opacity: 0 // fade in with code
@@ -56,30 +64,9 @@ body
   color: $black
   background-color: #AAA
 
-select, input, textarea, button
-  basefont()
-  color: $black
-
-button
-  margin: 0 0.75em 0 0
-  border: none
-  border-radius: 2px
-  padding: 0.25em
-  background-color: rgba(0, 0, 0, 0.1)
-  line-height: 1
-  font-variant: all-small-caps
-  cursor: pointer
-  &:hover, &:focus, &:active
-    color: $white
-    background-color: rgba(0, 0, 0, 0.7)
-
-a
-  color: $black
-  text-decoration: underline
-
 block()
   basefont()
-  margin: $base-line-height 0
+  margin: lines(1) 0
   &:first-child
     margin-top: 0
   &:last-child
@@ -87,19 +74,20 @@ block()
 
 h1
   block()
-  font-weight: 500
+  font-weight: $bold-weight
   text-transform: uppercase
-  letter-spacing: 0.05em
+  letter-spacing: chars(1)
 
 h2
   basefont()
   display: inline
-  font-weight: 500
+  font-weight: $bold-weight
   font-variant: all-small-caps
 
 p
   basefont()
   display: inline
+
 p + h2
   &::before
     content: '\00a0\00a0'
@@ -109,12 +97,40 @@ p + h2
     background-position: 0 0
     opacity: 0.9
 
- strong
-  font-weight: 500
+ul
+  margin: 0
+  padding: 0
+  li
+    display: inline
+    &:not(:first-child)::before
+      content: '—\00a0'
+
+select, input, textarea, button
+  basefont()
+  color: $black
+
+/*button*/
+  /*margin: 0 0.75em 0 0*/
+  /*border: none*/
+  /*border-radius: 2px*/
+  /*padding: 0.25em*/
+  /*background-color: rgba(0, 0, 0, 0.1)*/
+  /*line-height: 1*/
+  /*font-variant: all-small-caps*/
+  /*cursor: pointer*/
+  /*&:hover, &:focus, &:active*/
+    /*color: $white*/
+    /*background-color: rgba(0, 0, 0, 0.7)*/
+
+a
+  color: $black
+  text-decoration: underline
+
+strong
+  font-weight: $bold-weight
 
 em
   font-style: italic
-
 
 // SPECIFIC
 
@@ -124,99 +140,70 @@ em
 #main-container
   background: url('/media/transparent-paper.png') fixed rgba(128, 128, 128, 0.5)
 
+#header
+  position: fixed
+  left: chars(5)
+  bottom: lines(1)
+  width: 100%
+  .title
+    position: fixed
+    bottom: 0
+    left: 0.1em
+    font-family: Atlas Typewriter
+    font-size: 30vw
+    line-height: 1
+    font-weight: 900
+    letter-spacing: -0.07em;
+    opacity: 0.25
+    filter: blur(2px)
+    pointer-events: none
+
 #main
   width: 100%
   margin: 0 auto
-  padding: ($base-line-height * 2) 0
-
-#pageHeader
-  margin-right: 81px
-  padding-top: 20px
-  text-align: center
+  padding: 0 $body-text-h-padding lines(2)
 
 section
-  margin: $base-line-height 0
+  margin: lines(1) 0
   &:first-child
     margin-top: 0
   &:last-child
     margin-bottom: 0
 
 #notice
-  padding: $base-line-height $base-letter-width
+  padding: lines(1) chars(1)
   border-top: 1em solid $black
   border-bottom: 1em solid $black
-  border-left: $base-letter-width solid $black
-  border-right: $base-letter-width solid $black
-  margin: ("calc(%s - 1em)" % ($base-line-height * 2)) (- $base-letter-width * 2)
+  border-left: chars(1) solid $black
+  border-right: chars(1) solid $black
+  margin: 0 (- chars(2)) ("calc(%s - 1em)" % lines(2))
+  h2
+    color: $white
+    background-color: $black
+    &:not(:first-child)::before
+      white-space: pre-wrap
+      content: '\A\A'
 
-.lang::before
-  margin-right: $base-letter-width
-  color: $white
-  background-color: $black
-  font-variant: all-small-caps
-.lang:not(:first-child)::before
-  white-space: pre-wrap
-.lang.fr::before
-  content: '\A fr'
-.lang.en::before
-  content: '\A en'
-h2.lang
-  line-break:
-
-content-text()
-  a:hover, a:focus
-    text-shadow: 0 0 4px white
-
-  ul
-    margin: -0.5em 0 0.75em 0 // expecting a paragraph before by default
-    padding-left: 1.35em
-    text-indent: -1.35em
-    list-style: none
-    &:first-child
-      margin-top: 0
-    &:last-child
-      margin-bottom: 0
-
-    li
-      margin-bottom: 0.25em
-      &:before
-        content: "\2014\a0\a0"
-
-#sections
-  margin: 0 auto
-  width: (65 * $base-letter-width)
+#footer
+  padding: 0 $body-text-h-padding lines(1)
   text-align: center
+  &::after // clearfix
+    content: ""
+    display: block
+    clear: both
 
-  *
-    transform-style: preserve-3d
-
-  section
-    content-text()
-
-    h1
-      display: inline-block
-      margin: 0 0 0.2em 0
-
-      a
-        padding: 0 15px
-        text-decoration: none
-
-  .dash
-    padding: 5px 0
-
-  .dashes
-    padding-bottom: 5px
-    .dash
-      display: block
-      margin: 0 auto 0 auto
-
-.contact-details
-  text-align: center
-  .vcard
-    margin-top: 0.5em
-    font-weight: bold
-    a
-      text-decoration: none
+ul.coordinates
+  display: inline-block
+  li
+    float: left
+    margin-left: chars(3)
+    text-indent: - chars(3)
+    vertical-align: top
+    text-align: left
+    &:not(:first-child)::before
+      content: '\00a0∙\00a0'
+  .practice-name
+    font-weight: $bold-weight
 
 #video-container
   position: fixed
@@ -239,58 +226,14 @@ content-text()
   min-width: 50%
   min-height: 50%
 
-@media (min-width: 750px)
+@media (min-width: ($body-text-width + $body-text-h-padding))
   #main
-    width: (52 * $base-letter-width)
-  #pageHeader
-    margin-right: 37px
-    text-align: right
-  #sections
-    margin: 0 0 0 auto
-    width: 200px
+    width: ($body-text-width + $body-text-h-padding)
+    padding-top: lines(2)
+  #notice
+    margin-top: @margin-bottom
 
-#header
-  position: fixed
-  left: 5em
-  bottom: 1em //-9px
-  width: 100%
-  /*border-bottom: 12px dashed $black*/
-  .subtitle
-    font-family: Atlas Typewriter
-    font-weight: 400
-    font-size: 1.5em
-  .title
-    position: fixed
-    bottom: 0
-    left: 0.1em
-    font-family: Atlas Typewriter
-    font-size: 30vw
-    line-height: 1
-    font-weight: 900
-    letter-spacing: -0.07em;
-    opacity: 0.25
-    filter: blur(2px)
-    pointer-events: none
-  .title-old
-    position: relative
+@media (min-width: ($body-text-width + chars(16)))
+  #footer
     margin: 0 auto
-    width: 700px
-    font-family: "Atlas Typewriter"
-    font-size: 2em
-    font-weight: 900
-    letter-spacing: -0.04em;
-    //opacity: 0.75
-    &:before, &:after
-      position: absolute
-      width: 200%
-      //content: '\00a0— — — — — — — — — — — — — — — — — — — — — — — — — — —\00a0'
-      overflow: hidden
-    &:before
-      margin-left: -200%
-      text-align: right
-      content: '>\00a0'
-    &:after
-      margin-right: -200%
-      text-align: left
-      content: '<'
-
+    padding: 0 chars(8) lines(1)
