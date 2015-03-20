@@ -2,7 +2,7 @@ var metalsmith = require('metalsmith')(__dirname),
     collections = require('metalsmith-collections'),
     ignore = require('metalsmith-ignore'),
     jade = require('metalsmith-jade'),
-    markdown = require('metalsmith-markdown'),
+    markdown = require('metalsmith-markdown-remarkable'),
     stylus = require('metalsmith-stylus'),
     watch = process.argv[2] === 'watch' ? require('metalsmith-watch') : null;
 
@@ -16,7 +16,11 @@ metalsmith
         sortBy: 'name'
       }
     }))
-    .use(markdown())
+    .use(markdown('full', {
+      html: true,
+      linkify: true,
+      typographer: true
+    }))
     .use(jade({useMetadata: true}))
     .use(stylus({nib: true}))
     .use(ignore('content/sections/*'));

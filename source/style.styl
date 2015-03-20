@@ -1,12 +1,37 @@
 @import 'nib'
 global-reset()
 
+// FONTS
+
+@font-face {
+  font-family: 'Atlas Typewriter Web';
+  src: url('fonts/AtlasTypewriter-Regular-Web.eot');
+  src: url('fonts/AtlasTypewriter-Regular-Web.eot?#iefix') format('embedded-opentype'),
+  url('fonts/AtlasTypewriter-Regular-Web.woff') format('woff'),
+  url('fonts/AtlasTypewriter-Regular-Web.ttf') format('truetype'),
+  url('fonts/AtlasTypewriter-Regular-Web.svg#AtlasTypewriter-Regular') format('svg');
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: 'Atlas Typewriter Web';
+  src: url('fonts/AtlasTypewriter-Medium-Web.eot');
+  src: url('fonts/AtlasTypewriter-Medium-Web.eot?#iefix') format('embedded-opentype'),
+  url('fonts/AtlasTypewriter-Medium-Web.woff') format('woff'),
+  url('fonts/AtlasTypewriter-Medium-Web.ttf') format('truetype'),
+  url('fonts/AtlasTypewriter-Medium-Web.svg#AtlasTypewriter-Medium') format('svg');
+  font-weight:  500;
+  font-style:   bold;
+  font-stretch: normal;
+}
+
 // VARIABLES
 
 $black = rgba(0, 0, 0, 0.9)
 $white = #FFF
 
-$base-font-family = Atlas Typewriter, Inconsolata, Consolas, 'Courier New', Courier, monospace
+$base-font-family = Atlas Typewriter Web, Inconsolata, Consolas, 'Courier New', Courier, monospace
 $bold-weight = 500
 $base-font-size = 16px
 $base-line-height = 23px // = 1.4375
@@ -82,7 +107,9 @@ h2
   basefont()
   display: inline
   font-weight: $bold-weight
-  font-variant: all-small-caps
+  // TODO: font-variant: small-caps
+  // text-transform: lowercase
+  text-transform: uppercase
 
 p
   basefont()
@@ -139,26 +166,35 @@ em
 
 #main-container
   background: url('/media/transparent-paper.png') fixed rgba(128, 128, 128, 0.5)
+  perspective: 1px
+  perspective-origin-x: 100%
+  transform-style: preserve-3d
+  height: 100%
+  overflow-y: scroll
+  overflow-x: hidden
+
+$distanceFactor = 11
 
 #header
-  position: fixed
-  left: chars(5)
-  bottom: lines(1)
+  position: absolute
+  left: (chars(2) * $distanceFactor)
+  bottom: 0
+  transform: translateZ(-($distanceFactor - 1)px) scale($distanceFactor)
+  transform-origin-x: 100%
+  transform-style: preserve-3d
   width: 100%
-  .title
-    position: fixed
-    bottom: 0
-    left: 0.1em
-    font-family: Atlas Typewriter
-    font-size: 30vw
-    line-height: 1
-    font-weight: 900
-    letter-spacing: -0.07em;
+  .logo
+    width: 90%
     opacity: 0.25
+    -webkit-filter: blur(2px)
     filter: blur(2px)
     pointer-events: none
 
 #main
+  position: relative
+  transform: translateZ(0)
+  transform-origin-x: 100%
+  transform-style: preserve-3d
   width: 100%
   margin: 0 auto
   padding: 0 $body-text-h-padding lines(2)
@@ -185,6 +221,10 @@ section
       content: '\A\A'
 
 #footer
+  position: relative
+  transform: translateZ(0)
+  transform-origin-x: 100%
+  transform-style: preserve-3d
   padding: 0 $body-text-h-padding lines(1)
   text-align: center
   &::after // clearfix
@@ -232,8 +272,12 @@ ul.coordinates
     padding-top: lines(2)
   #notice
     margin-top: @margin-bottom
+  #header .logo
+    width: 80%
 
 @media (min-width: ($body-text-width + chars(16)))
   #footer
     margin: 0 auto
     padding: 0 chars(8) lines(1)
+  #header .logo
+    width: 50%

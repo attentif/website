@@ -7,17 +7,13 @@ title: What I do
 
 Originally trained as an IT engineer, I have over 15 years of experience crafting careful code to build apps and tools, networked or standalone, big or small.
 
-## Graphic design
+## Graphic & experience design
 
-Typography, visual identity.
-
-## User experience design
-
-Interaction design, user research, information architecture, content strategy.
+Mostly self-taught. Visual identity, typography, interaction design, information architecture, content strategy. On screen or printed media.
 
 ## Coaching & consulting
 
-I have years of experience with sustainable development and entrepreneurship to share.
+I have years of experience with sustainable development practices and entrepreneurship to share.
 
 ## Anything true and/or beautiful
 
