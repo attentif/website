@@ -25,6 +25,17 @@ global-reset()
   font-style:   bold;
   font-stretch: normal;
 }
+@font-face {
+  font-family: 'Atlas Typewriter SC Web';
+  src: url('fonts/AtlasTypewriterSC-Medium-Web.eot');
+  src: url('fonts/AtlasTypewriterSC-Medium-Web.eot?#iefix') format('embedded-opentype'),
+  url('fonts/AtlasTypewriterSC-Medium-Web.woff') format('woff'),
+  url('fonts/AtlasTypewriterSC-Medium-Web.ttf') format('truetype'),
+  url('fonts/AtlasTypewriterSC-Medium-Web.svg#AtlasTypewriter-Medium') format('svg');
+  font-weight:  500;
+  font-style:   bold;
+  font-stretch: normal;
+}
 
 // VARIABLES
 
@@ -106,10 +117,9 @@ h1
 h2
   basefont()
   display: inline
+  font-family: Atlas Typewriter SC Web, Atlas Typewriter Web, Inconsolata, Consolas, 'Courier New', Courier, monospace
   font-weight: $bold-weight
-  // TODO: font-variant: small-caps
-  // text-transform: lowercase
-  text-transform: uppercase
+  text-transform: lowercase
 
 p
   basefont()
