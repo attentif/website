@@ -1,27 +1,35 @@
-var Metalsmith = require('metalsmith'),
+var metalsmith = require('metalsmith')(__dirname),
     collections = require('metalsmith-collections'),
     ignore = require('metalsmith-ignore'),
     jade = require('metalsmith-jade'),
-    markdown = require('metalsmith-markdown'),
-    stylus = require('metalsmith-stylus');
+    markdown = require('metalsmith-markdown-remarkable'),
+    stylus = require('metalsmith-stylus'),
+    watch = process.argv[2] === 'watch' ? require('metalsmith-watch') : null;
 
-new Metalsmith(__dirname)
+metalsmith
     .source('./source')
     .destination('./build')
     .clean(false) // to keep .git, CNAME etc.
     .use(collections({
       sections: {
-        pattern: 'content/sections/*.*',
-        sortBy: 'sectionOrder'
+        pattern: 'content/*.*',
+        sortBy: 'name'
       }
     }))
-    .use(markdown())
+    .use(markdown('full', {
+      html: true,
+      linkify: true,
+      typographer: true
+    }))
     .use(jade({useMetadata: true}))
     .use(stylus({nib: true}))
-    .use(ignore('content/sections/*'))
-    .build(onComplete);
+    .use(ignore('content/sections/*'));
 
-function onComplete(err) {
+if (watch) {
+  metalsmith.use(watch());
+}
+
+metalsmith.build(function (err) {
   if (err) { return console.error(err); }
   console.log('OK');
-}
+});

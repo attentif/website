@@ -10,15 +10,16 @@
     "website"
   ],
   "author": "Simon Goumaz <simon@attentif.ch> (http://attentif.ch)",
-  "devDependencies": {
-    "metalsmith": "^1.0.1",
-    "metalsmith-collections": "^0.6.0",
-    "metalsmith-ignore": "^0.1.2",
-    "metalsmith-jade": "git+ssh://git@github.com:MaxBareiss/metalsmith-jade.git",
-    "metalsmith-markdown": "^0.2.1",
-    "metalsmith-stylus": "^0.2.1"
-  },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "metalsmith": "^1.0.1",
+    "metalsmith-collections": "^0.7.0",
+    "metalsmith-ignore": "^0.1.2",
+    "metalsmith-jade": "git+ssh://git@github.com:MaxBareiss/metalsmith-jade.git",
+    "metalsmith-markdown-remarkable": "^0.1.0",
+    "metalsmith-stylus": "^0.2.1",
+    "metalsmith-watch": "^0.2.0"
   }
 }
