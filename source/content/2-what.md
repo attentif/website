@@ -9,11 +9,11 @@ Originally trained as an IT engineer, I have over 15 years of experience craftin
 
 ## Graphic & experience design
 
-Mostly self-taught. Visual identity, typography, interaction design, information architecture, content strategy. On screen or printed media.
+Mostly self-taught. Visual identity, typography, interaction design, information architecture, content strategy. On digital or printed media.
 
 ## Coaching & consulting
 
-I have years of experience with sustainable development practices and entrepreneurship to share.
+I have years of experience with sustainable practices in development, collaboration and entrepreneurship to share.
 
 ## Anything true and/or beautiful
 

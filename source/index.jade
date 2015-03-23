@@ -13,6 +13,8 @@ html.no-js(lang='fr')
 
   body
     #main-container.fade
+      header#header
+        img.logo(src='media/logo-at.svg', alt='at* logo')
       main#main
         each section in sections
           section(id='#{section.id}')
@@ -29,8 +31,10 @@ html.no-js(lang='fr')
           li.phone +41 (0)79 385 71 20
           li.email
             a(href="mailto:simon@attentif.ch") simon@attentif.ch
-      header#header
-        img.logo(src='media/logo-at.svg', alt='at* logo')
+          li
+            a(href="https://github.com/sgoumaz", target="_blank") GitHub
+          li
+            a(href="https://www.linkedin.com/pub/simon-goumaz/1/11b/414", target="_blank") LinkedIn
 
     #video-container
       video#video.fade(autoplay loop)
