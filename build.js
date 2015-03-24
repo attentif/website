@@ -23,7 +23,7 @@ metalsmith
     }))
     .use(jade({useMetadata: true}))
     .use(stylus({nib: true}))
-    .use(ignore('content/sections/*'));
+    .use(ignore('content/*'));
 
 if (watch) {
   metalsmith.use(watch());
