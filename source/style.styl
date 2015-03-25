@@ -22,7 +22,7 @@ global-reset()
   url('fonts/AtlasTypewriter-Medium-Web.ttf') format('truetype'),
   url('fonts/AtlasTypewriter-Medium-Web.svg#AtlasTypewriter-Medium') format('svg');
   font-weight:  500;
-  font-style:   bold;
+  font-style:   normal;
   font-stretch: normal;
 }
 @font-face {
@@ -33,7 +33,7 @@ global-reset()
   url('fonts/AtlasTypewriterSC-Medium-Web.ttf') format('truetype'),
   url('fonts/AtlasTypewriterSC-Medium-Web.svg#AtlasTypewriter-Medium') format('svg');
   font-weight:  500;
-  font-style:   bold;
+  font-style:   normal;
   font-stretch: normal;
 }
 
@@ -42,7 +42,7 @@ global-reset()
 $black = rgba(0, 0, 0, 0.9)
 $white = #FFF
 
-$base-font-family = Atlas Typewriter Web, Inconsolata, Consolas, 'Courier New', Courier, monospace
+$base-font-family = 'Atlas Typewriter Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
 $bold-weight = 500
 $base-font-size = 16px
 $base-line-height = 23px // = 1.4375
@@ -117,7 +117,7 @@ h1
 h2
   basefont()
   display: inline
-  font-family: Atlas Typewriter SC Web, Atlas Typewriter Web, Inconsolata, Consolas, 'Courier New', Courier, monospace
+  font-family: 'Atlas Typewriter SC Web', 'Atlas Typewriter Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
   font-weight: $bold-weight
   text-transform: lowercase
 
@@ -222,7 +222,7 @@ section
   border-bottom: 1em solid $black
   border-left: chars(1) solid $black
   border-right: chars(1) solid $black
-  margin: 0 (- chars(2)) ("calc(%s - 1em)" % lines(2))
+  margin: 0 (- chars(2)) ("calc(%s - 1em)" % lines(3))
   h2
     color: $white
     background-color: $black
@@ -252,7 +252,7 @@ ul.coordinates
     text-align: left
     &:not(:first-child)::before
       content: '\00a0∙\00a0'
-  .practice-name
+  .workshop-name
     font-weight: $bold-weight
 
 #video-container
@@ -280,8 +280,6 @@ ul.coordinates
   #main
     width: ($body-text-width + $body-text-h-padding)
     padding-top: lines(2)
-  #notice
-    margin-top: @margin-bottom
   #header .logo
     width: 80%
 

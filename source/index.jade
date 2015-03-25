@@ -1,5 +1,5 @@
 doctype html
-html.no-js(lang='fr')
+html.no-js(lang='en')
   head
     meta(charset='UTF-8')
     title attentif : atelier
@@ -8,13 +8,13 @@ html.no-js(lang='fr')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='icon', href='/media/favicon.ico', type='image/x-icon')
     link(rel='stylesheet', type='text/css', href='/style.css')
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js')
-    script(src='/scripts/vendor/modernizr.min.js')
+    script(src='/scripts/vendor/jquery-1.11.2.min.js')
+    script(src='/scripts/vendor/modernizr-2.8.3.min.js')
 
   body
     #main-container.fade
       header#header
-        img.logo(src='media/logo-at.svg', alt='at* logo')
+        img.logo(src='media/logo-at.svg', alt='at*')
       main#main
         each section in sections
           section(id='#{section.id}')
@@ -23,7 +23,7 @@ html.no-js(lang='fr')
             != section.contents
       footer#footer
         ul.coordinates
-          li.practice-name attentif : atelier*
+          li.workshop-name attentif : atelier*
           li.name Simon Goumaz
           li.address
             | arcade des Pépins de la Pastèque<br>
