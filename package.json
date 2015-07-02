@@ -14,12 +14,12 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "metalsmith": "^1.0.1",
+    "metalsmith": "^1.7.0",
     "metalsmith-collections": "^0.7.0",
     "metalsmith-ignore": "^0.1.2",
-    "metalsmith-jade": "git+ssh://git@github.com:MaxBareiss/metalsmith-jade.git",
-    "metalsmith-markdown-remarkable": "^0.1.0",
+    "metalsmith-jade": "^2.0.0",
+    "metalsmith-markdown-remarkable": "^0.1.1",
     "metalsmith-stylus": "^0.2.1",
-    "metalsmith-watch": "^0.2.0"
+    "metalsmith-watch": "^1.0.1"
   }
 }
