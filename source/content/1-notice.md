@@ -4,7 +4,7 @@ id: notice
 
 ## attentif délocalise en Asie
 
-Je vis à Hong Kong avec ma famille pour un temps limité mais indéterminé. L’atelier reste ouvert mais son activité réduite.
+Je vis à Hong Kong avec ma famille pour un temps limité mais indéterminé. L’atelier reste ouvert avec une activité réduite.
 
 
 ## attentif relocates to Asia
