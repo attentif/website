@@ -17,7 +17,7 @@ html.no-js(lang='en')
         img.logo(src='media/logo-at.svg', alt='at*')
       main#main
         each section in sections
-          section(id='#{section.id}')
+          section(id=section.id)
             if section.title
               h1!= section.title
             != section.contents
@@ -26,8 +26,7 @@ html.no-js(lang='en')
           li.workshop-name attentif : atelier*
           li.name Simon Goumaz
           li.address
-            | 3106, 31/F, T1, Metropolis Residence<br>
-            a(href="http://www.openstreetmap.org/?mlat=22.30222&mlon=114.18360#map=17/22.30222/114.18360&layers=T", target="_blank", title="Open map") 8 Metropolis Drive, Hung Hom<br>Kowloon, Hong Kong
+            a(href="http://www.openstreetmap.org/?mlat=22.40114&mlon=113.97977#map=16/22.40115/113.97977&layers=T", target="_blank", title="Open map") G/F, 92 San Hui Village<br>Tuen Mun<br>New Territories, Hong Kong
           li.phone
             a(href="tel:+85298267290") +852 9826 7290
           li.email

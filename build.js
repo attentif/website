@@ -1,8 +1,9 @@
 var metalsmith = require('metalsmith')(__dirname),
     collections = require('metalsmith-collections'),
     ignore = require('metalsmith-ignore'),
-    jade = require('metalsmith-jade'),
     markdown = require('metalsmith-markdown-remarkable'),
+    nib = require('nib'),
+    pug = require('metalsmith-pug'),
     stylus = require('metalsmith-stylus'),
     watch = process.argv[2] === 'watch' ? require('metalsmith-watch') : null;
 
@@ -13,7 +14,7 @@ metalsmith
     .use(collections({
       sections: {
         pattern: 'content/*.*',
-        sortBy: 'name'
+        sortBy: 'filename'
       }
     }))
     .use(markdown('full', {
@@ -21,8 +22,8 @@ metalsmith
       linkify: true,
       typographer: true
     }))
-    .use(jade({useMetadata: true}))
-    .use(stylus({nib: true}))
+    .use(pug({useMetadata: true}))
+    .use(stylus({use: [nib()]}))
     .use(ignore('content/*'));
 
 if (watch) {
