@@ -42,28 +42,28 @@ global-reset()
 $black = rgba(0, 0, 0, 0.9)
 $white = #FFF
 
-$base-font-family = 'Atlas Typewriter Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
-$bold-weight = 500
 $base-font-size = 16px
-$base-line-height = 23px // = 1.4375
-$base-letter-width = round($base-font-size * 0.64) // empirically determined
+$console-font-family = 'Atlas Typewriter Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
+$bold-weight = 500
+$console-line-height = 1.4375rem
+$console-letter-width = 0.64rem // empirically determined
 
-lines(n)
-  (n * $base-line-height)
+console-lines(n)
+  (n * $console-line-height)
 
-chars(n)
-  (n * $base-letter-width)
+console-chars(n)
+  (n * $console-letter-width)
 
-$body-text-width = chars(60)
-$body-text-h-padding = chars(2)
+$body-text-width = console-chars(60)
+$body-text-h-padding = console-chars(2)
 
 
 // BASE
 
-basefont()
-  font-family: $base-font-family
-  font-size: $base-font-size
-  line-height: $base-line-height
+console-font()
+  font-family: $console-font-family
+  font-size: 1rem
+  line-height: $console-line-height
 
 // TODO: review compatibility
 transform-style()
@@ -96,13 +96,14 @@ html
 
 body
   height: 100%
-  basefont()
+  font-size: $base-font-size
+  console-font()
   color: $black
   background-color: #AAA
 
 block()
-  basefont()
-  margin: lines(1) 0
+  console-font()
+  margin: console-lines(1) 0
   &:first-child
     margin-top: 0
   &:last-child
@@ -112,17 +113,17 @@ h1
   block()
   font-weight: $bold-weight
   text-transform: uppercase
-  letter-spacing: chars(1)
+  letter-spacing: console-chars(1)
 
 h2
-  basefont()
+  console-font()
   display: inline
   font-family: 'Atlas Typewriter SC Web', 'Atlas Typewriter Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
   font-weight: $bold-weight
   text-transform: lowercase
 
 p
-  basefont()
+  console-font()
   display: inline
 
 p + h2
@@ -143,7 +144,7 @@ ul
       content: '—\00a0'
 
 select, input, textarea, button
-  basefont()
+  console-font()
   color: $black
 
 /*button*/
@@ -187,7 +188,7 @@ $distanceFactor = 11
 
 #header
   position: absolute
-  left: (chars(2) * $distanceFactor)
+  left: (console-chars(2) * $distanceFactor)
   bottom: 0
   transform: translateZ(-($distanceFactor - 1)px) scale($distanceFactor)
   transform-origin-x: 100%
@@ -207,22 +208,22 @@ $distanceFactor = 11
   transform-style: preserve-3d
   width: 100%
   margin: 0 auto
-  padding: 0 $body-text-h-padding lines(2)
+  padding: 0 $body-text-h-padding console-lines(2)
 
 section
-  margin: lines(1) 0
+  margin: console-lines(1) 0
   &:first-child
     margin-top: 0
   &:last-child
     margin-bottom: 0
 
 #notice
-  padding: lines(1) chars(1)
+  padding: console-lines(1) console-chars(1)
   border-top: 1em solid $black
   border-bottom: 1em solid $black
-  border-left: chars(1) solid $black
-  border-right: chars(1) solid $black
-  margin: 0 (- chars(2)) ("calc(%s - 1em)" % lines(3))
+  border-left: console-chars(1) solid $black
+  border-right: console-chars(1) solid $black
+  margin: 0 (- console-chars(2)) ("calc(%s - 1em)" % console-lines(3))
   h2
     color: $white
     background-color: $black
@@ -235,7 +236,7 @@ section
   transform: translateZ(0)
   transform-origin-x: 100%
   transform-style: preserve-3d
-  padding: 0 $body-text-h-padding lines(1)
+  padding: 0 $body-text-h-padding console-lines(1)
   text-align: center
   &::after // clearfix
     content: ""
@@ -246,8 +247,8 @@ ul.coordinates
   display: inline-block
   li
     float: left
-    margin-left: chars(3)
-    text-indent: - chars(3)
+    margin-left: console-chars(3)
+    text-indent: - console-chars(3)
     vertical-align: top
     text-align: left
     &:not(:first-child)::before
@@ -279,13 +280,13 @@ ul.coordinates
 @media (min-width: ($body-text-width + $body-text-h-padding))
   #main
     width: ($body-text-width + $body-text-h-padding)
-    padding-top: lines(2)
+    padding-top: console-lines(2)
   #header .logo
     width: 80%
 
-@media (min-width: ($body-text-width + chars(16)))
+@media (min-width: ($body-text-width + console-chars(16)))
   #footer
     margin: 0 auto
-    padding: 0 chars(8) lines(1)
+    padding: 0 console-chars(8) console-lines(1)
   #header .logo
     width: 50%
