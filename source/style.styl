@@ -4,14 +4,24 @@ global-reset()
 // FONTS
 
 @font-face {
-  font-family: 'Atlas Typewriter Web';
-  src: url('fonts/AtlasTypewriter-Regular-Web.eot');
-  src: url('fonts/AtlasTypewriter-Regular-Web.eot?#iefix') format('embedded-opentype'),
-  url('fonts/AtlasTypewriter-Regular-Web.woff') format('woff'),
-  url('fonts/AtlasTypewriter-Regular-Web.ttf') format('truetype'),
-  url('fonts/AtlasTypewriter-Regular-Web.svg#AtlasTypewriter-Regular') format('svg');
+  font-family: 'GT America Standard';
+  src: url('fonts/GT-America-Standard-Regular.eot');
+  src: url('fonts/GT-America-Standard-Regular.eot?#iefix') format('embedded-opentype'),
+  url('fonts/GT-America-Standard-Regular.woff2') format('woff2'),
+  url('fonts/GT-America-Standard-Regular.woff') format('woff'),
+  url('fonts/GT-America-Standard-Regular.ttf') format('truetype');
   font-weight:  400;
-  font-style:   normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: 'Satyr 10 Web';
+  src: url('fonts/Satyr10Web-Italic.eot');
+  src: url('fonts/Satyr10Web-Italic.eot?#iefix') format('embedded-opentype'),
+  url('fonts/Satyr10Web-Italic.woff2') format('woff2'),
+  url('fonts/Satyr10Web-Italic.woff') format('woff');
+  font-weight:  400;
+  font-style: italic;
   font-stretch: normal;
 }
 @font-face {
@@ -19,10 +29,9 @@ global-reset()
   src: url('fonts/AtlasTypewriter-Medium-Web.eot');
   src: url('fonts/AtlasTypewriter-Medium-Web.eot?#iefix') format('embedded-opentype'),
   url('fonts/AtlasTypewriter-Medium-Web.woff') format('woff'),
-  url('fonts/AtlasTypewriter-Medium-Web.ttf') format('truetype'),
-  url('fonts/AtlasTypewriter-Medium-Web.svg#AtlasTypewriter-Medium') format('svg');
+  url('fonts/AtlasTypewriter-Medium-Web.ttf') format('truetype');
   font-weight:  500;
-  font-style:   normal;
+  font-style: normal;
   font-stretch: normal;
 }
 @font-face {
@@ -30,10 +39,9 @@ global-reset()
   src: url('fonts/AtlasTypewriterSC-Medium-Web.eot');
   src: url('fonts/AtlasTypewriterSC-Medium-Web.eot?#iefix') format('embedded-opentype'),
   url('fonts/AtlasTypewriterSC-Medium-Web.woff') format('woff'),
-  url('fonts/AtlasTypewriterSC-Medium-Web.ttf') format('truetype'),
-  url('fonts/AtlasTypewriterSC-Medium-Web.svg#AtlasTypewriter-Medium') format('svg');
+  url('fonts/AtlasTypewriterSC-Medium-Web.ttf') format('truetype');
   font-weight:  500;
-  font-style:   normal;
+  font-style: normal;
   font-stretch: normal;
 }
 
@@ -42,9 +50,13 @@ global-reset()
 $black = rgba(0, 0, 0, 0.9)
 $white = #FFF
 
-$base-font-size = 16px
+$base-font-size = 18px
+$text-font-family = 'GT America Standard', Helvetica, Arial, sans-serif
+$em-font-family = 'Satyr 10 Web', 'Times New Roman', serif
+$headings-font-family = 'Atlas Typewriter SC Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
 $console-font-family = 'Atlas Typewriter Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
 $bold-weight = 500
+// TODO: review all console stuff
 $console-line-height = 1.4375rem
 $console-letter-width = 0.64rem // empirically determined
 
@@ -60,10 +72,25 @@ $body-text-h-padding = console-chars(2)
 
 // BASE
 
+text-font()
+  font-family: $text-font-family
+  font-size: 1.06rem
+  font-variant-numeric: oldstyle-nums
+
+em-font()
+  font-family: $em-font-family
+  font-style: italic
+  font-size: 1.24em
+
+headings-font()
+  font-family: $headings-font-family
+  font-weight: $bold-weight
+  font-size: 1rem
+
 console-font()
   font-family: $console-font-family
+  font-weight: $bold-weight
   font-size: 1rem
-  line-height: $console-line-height
 
 // TODO: review compatibility
 transform-style()
@@ -85,6 +112,7 @@ selection()
 
 html
   height: 100%
+  font-size: $base-font-size
   &.js
     .fade
       opacity: 0 // fade in with code
@@ -96,13 +124,12 @@ html
 
 body
   height: 100%
-  font-size: $base-font-size
-  console-font()
+  text-font()
+  line-height: $console-line-height
   color: $black
   background-color: #AAA
 
 block()
-  console-font()
   margin: console-lines(1) 0
   &:first-child
     margin-top: 0
@@ -111,22 +138,22 @@ block()
 
 h1
   block()
-  font-weight: $bold-weight
+  headings-font()
   text-transform: uppercase
   letter-spacing: console-chars(1)
 
 h2
-  console-font()
+  headings-font()
   display: inline
-  font-family: 'Atlas Typewriter SC Web', 'Atlas Typewriter Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
-  font-weight: $bold-weight
+  margin-right: console-chars(0.5)
   text-transform: lowercase
 
 p
-  console-font()
+  text-font()
   display: inline
 
 p + h2
+  margin-left: console-chars(1)
   &::before
     content: '\00a0\00a0'
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGD4BwABAwD/oLeC+wAAAABJRU5ErkJggg==')
@@ -168,7 +195,11 @@ strong
   font-weight: $bold-weight
 
 em
-  font-style: italic
+  em-font()
+
+strong
+  em-font()
+  // TODO: more emphasis
 
 // SPECIFIC
 
