@@ -8,7 +8,7 @@ var metalsmith = require('metalsmith')(__dirname),
     watch = process.argv[2] === 'watch' ? require('metalsmith-watch') : null;
 
 metalsmith
-    .source('./source')
+    .source('./src')
     .destination('./build')
     .clean(false) // to keep .git, CNAME etc.
     .use(collections({

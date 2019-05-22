@@ -1,6 +1,5 @@
-node_modules
+.idea
 build
-.docpad.db
+node_modules
 npm-debug.log
 website.iml
-.idea
