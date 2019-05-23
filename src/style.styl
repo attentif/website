@@ -51,10 +51,6 @@ $black = rgba(0, 0, 0, 0.9)
 $white = #FFF
 
 $base-font-size = 18px
-$text-font-family = 'GT America Standard', Helvetica, Arial, sans-serif
-$em-font-family = 'Satyr 10 Web', 'Times New Roman', serif
-$headings-font-family = 'Atlas Typewriter SC Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
-$console-font-family = 'Atlas Typewriter Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
 $bold-weight = 500
 // TODO: review all console stuff
 $console-line-height = 1.4375rem
@@ -73,23 +69,23 @@ $body-text-h-padding = console-chars(2)
 // BASE
 
 text-font()
-  font-family: $text-font-family
+  font-family: 'GT America Standard', Helvetica, Arial, sans-serif
   font-size: 1.06rem
   font-variant-numeric: oldstyle-nums
 
 em-font()
-  font-family: $em-font-family
+  font-family: 'Satyr 10 Web', 'Times New Roman', serif
   font-style: italic
-  font-size: 1.24rem
-  letter-spacing: -0.01em
+  font-size: 1.21rem
+  letter-spacing: -0.015em
 
 headings-font()
-  font-family: $headings-font-family
+  font-family: 'Atlas Typewriter SC Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
   font-weight: $bold-weight
   font-size: 1rem
 
 console-font()
-  font-family: $console-font-family
+  font-family: 'Atlas Typewriter Web', Inconsolata, Consolas, 'Courier New', Courier, monospace
   font-weight: $bold-weight
   font-size: 1rem
 
@@ -137,6 +133,13 @@ block()
   &:last-child
     margin-bottom: 0
 
+inline()
+  display: inline
+  margin: 0
+
+section
+  block()
+
 h1
   block()
   headings-font()
@@ -144,32 +147,54 @@ h1
   letter-spacing: console-chars(1)
 
 h2
+  block()
+  margin-bottom: 0
   headings-font()
-  display: inline
-  margin-right: console-chars(0.5)
   text-transform: lowercase
 
 p
+  block() // TODO: remove?
+  margin-top: 0
   text-font()
-  display: inline
-
-p + h2
-  margin-left: console-chars(1)
-  &::before
-    content: '\00a0\00a0'
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGD4BwABAwD/oLeC+wAAAABJRU5ErkJggg==')
-    background-size: 50% 100%
-    background-repeat: repeat-y
-    background-position: 0 0
-    opacity: 0.9
 
 ul
   margin: 0
   padding: 0
+  padding-left: 1.4em
   li
-    display: inline
-    &:not(:first-child)::before
+    position: relative
+    &::before
+      position: absolute
+      left: -1.35em
       content: '—\00a0'
+
+.inline
+  h2
+    inline()
+    margin-right: console-chars(0.5)
+
+  p
+    inline()
+
+  p + h2
+    margin-left: console-chars(1)
+    &::before
+      content: '\00a0\00a0'
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGD4BwABAwD/oLeC+wAAAABJRU5ErkJggg==')
+      background-size: 50% 100%
+      background-repeat: repeat-y
+      background-position: 0 0
+      opacity: 0.9
+
+  ul
+    padding: 0
+    li
+      inline()
+      &::before
+        position: unset
+        left: unset
+      &:first-child::before
+        content: none
 
 select, input, textarea, button
   console-font()
@@ -192,9 +217,6 @@ a
   color: $black
   text-decoration: underline
 
-strong
-  font-weight: $bold-weight
-
 em
   em-font()
 
@@ -202,10 +224,7 @@ strong
   em-font()
   // TODO: more emphasis
 
-// SPECIFIC
-
-.attentif
-  // TODO: review
+// WEBSITE-SPECIFIC
 
 #main-container
   background: url('/media/transparent-paper.png') fixed rgba(128, 128, 128, 0.5)
@@ -242,14 +261,7 @@ $distanceFactor = 11
   margin: 0 auto
   padding: 0 $body-text-h-padding console-lines(2)
 
-section
-  margin: console-lines(1) 0
-  &:first-child
-    margin-top: 0
-  &:last-child
-    margin-bottom: 0
-
-#notice
+#notice // assumes .inline
   padding: console-lines(1) console-chars(1)
   border-top: 1em solid $black
   border-bottom: 1em solid $black
@@ -283,10 +295,15 @@ ul.coordinates
     text-indent: - console-chars(3)
     vertical-align: top
     text-align: left
+    &::before
+      position: unset
+      left: unset
+    &:first-child::before
+      content: none
     &:not(:first-child)::before
       content: '\00a0∙\00a0'
   .workshop-name
-    font-weight: $bold-weight
+    console-font()
 
 #video-container
   position: fixed
@@ -322,3 +339,14 @@ ul.coordinates
     padding: 0 console-chars(8) console-lines(1)
   #header .logo
     width: 50%
+
+// PRINT-SPECIFIC
+
+@media print
+  html
+    font-size: 11pt
+  body
+    background-color: transparent
+  // TODO remove (disable default styles in mdpdf API)
+  body.markdown-body
+    font-size: unset

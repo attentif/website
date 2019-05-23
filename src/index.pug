@@ -17,13 +17,13 @@ html.no-js(lang='en')
         img.logo(src='media/logo-at.svg', alt='at*')
       main#main
         each section in sections
-          section(id=section.id)
+          section.inline(id=section.id)
             if section.title
               h1!= section.title
             != section.contents
       footer#footer
         ul.coordinates
-          li.workshop-name attentif : atelier*
+          li.workshop-name attentif:atelier*
           li.name Simon Goumaz
           //li.address
           //  a(href="http://www.openstreetmap.org/?mlat=22.40114&mlon=113.97977#map=16/22.40115/113.97977&layers=T", target="_blank", title="Open map") G/F, 92 San Hui Village<br>Tuen Mun<br>New Territories, Hong Kong
