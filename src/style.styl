@@ -1,7 +1,11 @@
 @import 'nib'
 global-reset()
 
-// FONTS
+// -----------
+// BASE STYLES
+// -----------
+
+// Fonts
 
 @font-face {
   font-family: 'GT America Standard';
@@ -45,28 +49,17 @@ global-reset()
   font-stretch: normal;
 }
 
-// VARIABLES
+// Variables
+
+$base-font-size = 18px
+$base-line-height = 1.4375rem
+$base-letter-width = 0.64rem // empirically determined
 
 $black = rgba(0, 0, 0, 0.9)
 $white = #FFF
-
-$base-font-size = 18px
 $bold-weight = 500
-// TODO: review all console stuff
-$console-line-height = 1.4375rem
-$console-letter-width = 0.64rem // empirically determined
 
-console-lines(n)
-  (n * $console-line-height)
-
-console-chars(n)
-  (n * $console-letter-width)
-
-$body-text-width = console-chars(60)
-$body-text-h-padding = console-chars(2)
-
-
-// BASE
+// Mixins: Type
 
 text-font()
   font-family: 'GT America Standard', Helvetica, Arial, sans-serif
@@ -89,14 +82,32 @@ console-font()
   font-weight: $bold-weight
   font-size: 1rem
 
-// TODO: review compatibility
-transform-style()
-  -webkit-transform-style: arguments
-  -moz-transform-style: arguments
+// Mixins: Layout
+
+base-lines(n)
+  (n * $base-line-height)
+
+base-chars(n)
+  (n * $base-letter-width)
+
+block()
+  margin: base-lines(1) 0
+  &:first-child
+    margin-top: 0
+  &:last-child
+    margin-bottom: 0
+
+inline()
+  display: inline
+  margin: 0
+
+// Mixins: Other
 
 selection()
   color: #000
   background-color: rgba(255, 255, 0, 0.5)
+
+// Elements
 
 *
   padding: 0
@@ -122,20 +133,9 @@ html
 body
   height: 100%
   text-font()
-  line-height: $console-line-height
+  line-height: $base-line-height
   color: $black
   background-color: #AAA
-
-block()
-  margin: console-lines(1) 0
-  &:first-child
-    margin-top: 0
-  &:last-child
-    margin-bottom: 0
-
-inline()
-  display: inline
-  margin: 0
 
 section
   block()
@@ -144,7 +144,7 @@ h1
   block()
   headings-font()
   text-transform: uppercase
-  letter-spacing: console-chars(1)
+  letter-spacing: base-chars(1)
 
 h2
   block()
@@ -171,13 +171,13 @@ ul
 .inline
   h2
     inline()
-    margin-right: console-chars(0.5)
+    margin-right: base-chars(0.5)
 
   p
     inline()
 
   p + h2
-    margin-left: console-chars(1)
+    margin-left: base-chars(1)
     &::before
       content: '\00a0\00a0'
       background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGD4BwABAwD/oLeC+wAAAABJRU5ErkJggg==')
@@ -222,9 +222,26 @@ em
 
 strong
   em-font()
-  // TODO: more emphasis
+  // TODO: more emphasis?
 
-// WEBSITE-SPECIFIC
+
+// --------------
+// WEBSITE STYLES
+// --------------
+
+// Variables
+
+$body-text-width = base-chars(60)
+$body-text-h-padding = base-chars(2)
+
+// Mixins
+
+// TODO: review compatibility
+transform-style()
+  -webkit-transform-style: arguments
+  -moz-transform-style: arguments
+
+// Elements
 
 #main-container
   background: url('/media/transparent-paper.png') fixed rgba(128, 128, 128, 0.5)
@@ -236,10 +253,9 @@ strong
   overflow-x: hidden
 
 $distanceFactor = 11
-
 #header
   position: absolute
-  left: (console-chars(2) * $distanceFactor)
+  left: (base-chars(2) * $distanceFactor)
   bottom: 0
   transform: translateZ(-($distanceFactor - 1)px) scale($distanceFactor)
   transform-origin-x: 100%
@@ -259,15 +275,16 @@ $distanceFactor = 11
   transform-style: preserve-3d
   width: 100%
   margin: 0 auto
-  padding: 0 $body-text-h-padding console-lines(2)
+  padding: 0 $body-text-h-padding base-lines(2)
 
-#notice // assumes .inline
-  padding: console-lines(1) console-chars(1)
+// HACK: assumes .inline
+#notice
+  padding: base-lines(1) base-chars(1)
   border-top: 1em solid $black
   border-bottom: 1em solid $black
-  border-left: console-chars(1) solid $black
-  border-right: console-chars(1) solid $black
-  margin: 0 (- console-chars(2)) ("calc(%s - 1em)" % console-lines(3))
+  border-left: base-chars(1) solid $black
+  border-right: base-chars(1) solid $black
+  margin: 0 (- base-chars(2)) ("calc(%s - 1em)" % base-lines(3))
   h2
     color: $white
     background-color: $black
@@ -280,7 +297,7 @@ $distanceFactor = 11
   transform: translateZ(0)
   transform-origin-x: 100%
   transform-style: preserve-3d
-  padding: 0 $body-text-h-padding console-lines(1)
+  padding: 0 $body-text-h-padding base-lines(1)
   text-align: center
   &::after // clearfix
     content: ""
@@ -291,8 +308,8 @@ ul.coordinates
   display: inline-block
   li
     float: left
-    margin-left: console-chars(3)
-    text-indent: - console-chars(3)
+    margin-left: base-chars(3)
+    text-indent: - base-chars(3)
     vertical-align: top
     text-align: left
     &::before
@@ -329,18 +346,21 @@ ul.coordinates
 @media (min-width: ($body-text-width + $body-text-h-padding))
   #main
     width: ($body-text-width + $body-text-h-padding)
-    padding-top: console-lines(2)
+    padding-top: base-lines(2)
   #header .logo
     width: 80%
 
-@media (min-width: ($body-text-width + console-chars(16)))
+@media (min-width: ($body-text-width + base-chars(16)))
   #footer
     margin: 0 auto
-    padding: 0 console-chars(8) console-lines(1)
+    padding: 0 base-chars(8) base-lines(1)
   #header .logo
     width: 50%
 
-// PRINT-SPECIFIC
+
+// ------------
+// PRINT STYLES
+// ------------
 
 @media print
   html
