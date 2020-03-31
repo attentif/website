@@ -2,11 +2,11 @@
 id: notice
 ---
 
-## attentif à Hong Kong, toujours
+## attentif de retour en Suisse cet été?
 
-Le moment du retour en Suisse avec ma famille se rapproche mais reste indéterminé. L’atelier garde une activité réduite.
+Le retour en Suisse avec ma famille a été fixé pour l’été 2020… si possible. L’atelier est en pause d’ici là.<br>Tout le monde: ❤️
 
 
-## attentif in Hong Kong, still
+## attentif back to Switzerland this Summer?
 
-The time to return to Switzerland with my family gets closer but remains unknown. Workshop activity proceeds in quiet mode.
+The move back to Switzerland with my family has been set for the Summer 2020… if possible. Workshop activity is on hold until then.<br>Everyone: ❤️

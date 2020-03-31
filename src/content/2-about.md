@@ -38,4 +38,4 @@ Whether we're fully co-creating or I'm just giving a little hand, I look for the
 
 # Contact me
 
-I am [based in Hong Kong for the time being](#notice). Work with Switzerland keeps going remotely when it makes sense.
+I am [currently in Hong Kong, preparing my move back to Geneva](#notice). Workshop activity is paused for now, but I’m glad to discuss any collaboration that might follow.
