@@ -2,8 +2,9 @@ doctype html
 html.no-js(lang='en')
   head
     meta(charset='UTF-8')
-    title attentif : atelier
-    meta(name='description', content='Atelier de design et développement logiciel à lucrativité limitée, basé à Genève, Suisse')
+    title
+      != (title ? `${title} – ` : '') + 'attentif : atelier'
+    meta(name='description', content='Atelier de design et développement pour un monde plus beau, à Genève, Suisse, Hong Kong')
     meta(name='author', content='Simon Goumaz')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='icon', href='/media/favicon.ico', type='image/x-icon')
@@ -15,12 +16,8 @@ html.no-js(lang='en')
     #main-container.fade
       header#header
         img.logo(src='media/logo-at.svg', alt='at*')
-      main#main
-        each section in sections
-          section.inline(id=section.id)
-            if section.title
-              h1!= section.title
-            != section.contents
+      main#main(class=`${inline ? 'inline' : ''}`)
+        != contents
       footer#footer
         ul.coordinates
           li.workshop-name attentif:atelier*

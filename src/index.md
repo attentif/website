@@ -1,6 +1,13 @@
 ---
-id: about
+inline: true
 ---
+
+<section class="notice">
+  <h2>attentif de retour en Suisse cet été?</h2>
+  <p>Le retour en Suisse avec ma famille a été fixé pour l’été 2020… si possible. L’atelier est en pause d’ici là.<br>Tout le monde: ❤️</p>
+  <h2>attentif back to Switzerland this Summer?</h2>
+  <p>The move back to Switzerland with my family has been set for the Summer 2020… if possible. Workshop activity is on hold until then.<br>Everyone: ❤️</p>
+</section>
 
 # What I do
 

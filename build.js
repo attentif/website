@@ -1,9 +1,8 @@
-var metalsmith = require('metalsmith')(__dirname),
+const metalsmith = require('metalsmith')(__dirname),
     collections = require('metalsmith-collections'),
-    ignore = require('metalsmith-ignore'),
-    markdown = require('metalsmith-markdown-remarkable'),
+    layouts = require('metalsmith-layouts'),
+    markdown = require('metalsmith-markdownit'),
     nib = require('nib'),
-    pug = require('metalsmith-pug'),
     stylus = require('metalsmith-stylus'),
     watch = process.argv[2] === 'watch' ? require('metalsmith-watch') : null;
 
@@ -13,18 +12,20 @@ metalsmith
     .clean(false) // to keep .git, CNAME etc.
     .use(collections({
       sections: {
-        pattern: 'content/*.*',
+        pattern: 'posts/*.*',
         sortBy: 'filename'
       }
     }))
-    .use(markdown('full', {
+    .use(markdown({
       html: true,
       linkify: true,
       typographer: true
     }))
-    .use(pug({useMetadata: true}))
-    .use(stylus({use: [nib()]}))
-    .use(ignore('content/*'));
+    .use(layouts({
+      default: 'default.pug',
+      pattern: '**/*.html'
+    }))
+    .use(stylus({use: [nib()]}));
 
 if (watch) {
   metalsmith.use(watch());
