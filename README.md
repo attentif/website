@@ -1,3 +1,3 @@
-# attentif : atelier — website
+# attentif* — website
 
-[Metalsmith](http://www.metalsmith.io) sources for the [atelier's website](https://attentif.ch).
+[Metalsmith](http://www.metalsmith.io) sources for my professional avatar's [static site](https://attentif.ch).
