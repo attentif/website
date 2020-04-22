@@ -15,8 +15,14 @@ html.no-js(lang='en')
   body
     #main-container.fade
       header#header
-        img.logo(src='media/logo-at.svg', alt='at*')
+        img.logo(src='/media/logo-at.svg', alt='at*')
       main#main(class=`${inline ? 'inline' : ''}`)
+        if title
+          h1.page-title
+            != title
+        if date
+          time(datetime=date)
+            != date.toLocaleDateString()
         != contents
       footer#footer
         ul.coordinates

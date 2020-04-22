@@ -1,0 +1,13 @@
+---
+title: Articles
+---
+ul.articles-list
+  for a in articles
+    li
+      // chop extension off path as we use permalinks
+      a(href=`/${a.path.split('.').slice(0, -1).join('.')}`)
+        != a.title
+      time(datetime=a.date)
+        != a.date.toLocaleDateString()
+      p
+        != a.description

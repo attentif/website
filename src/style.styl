@@ -287,6 +287,18 @@ $distanceFactor = 11
   margin: 0 auto
   padding: 0 $body-text-h-padding base-lines(2)
 
+#footer
+  position: relative
+  transform: translateZ(0)
+  transform-origin-x: 100%
+  transform-style: preserve-3d
+  padding: 0 $body-text-h-padding base-lines(1)
+  text-align: center
+  &::after // clearfix
+    content: ""
+    display: block
+    clear: both
+
 // HACK: assumes .inline
 .notice
   padding: base-lines(1) base-chars(1)
@@ -302,17 +314,23 @@ $distanceFactor = 11
       white-space: pre-wrap
       content: '\A\A'
 
-#footer
-  position: relative
-  transform: translateZ(0)
-  transform-origin-x: 100%
-  transform-style: preserve-3d
-  padding: 0 $body-text-h-padding base-lines(1)
-  text-align: center
-  &::after // clearfix
-    content: ""
-    display: block
-    clear: both
+.page-title
+  display: table
+  padding-left: base-chars(1)
+  margin: 0 (- base-chars(1)) base-lines(1)
+  color: $white
+  background-color: $black
+
+ul.articles-list
+  a
+    headings-font()
+    text-transform: lowercase
+  time
+    margin-left: base-chars(1)
+    &::before
+      content: '('
+    &::after
+      content: ')'
 
 ul.coordinates
   display: inline-block
