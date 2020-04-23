@@ -1,4 +1,7 @@
 module.exports = {
+  isHome: function(path) {
+    return !path;
+  },
   trimFileExtension: function(path) {
     const sep = '.';
     if (path.indexOf(sep) == -1) {
