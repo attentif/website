@@ -1,6 +1,7 @@
 const metalsmith = require('metalsmith')(__dirname),
     collections = require('metalsmith-collections'),
     dateInFilename = require('metalsmith-date-in-filename'),
+    helpers = require('./helpers'),
     inPlace = require('metalsmith-in-place'),
     layouts = require('metalsmith-layouts'),
     markdown = require('metalsmith-markdownit'),
@@ -13,6 +14,9 @@ metalsmith
     .source('./src')
     .destination('./build')
     .clean(false) // to keep .git, CNAME etc.
+    .metadata({
+      helpers: helpers
+    })
     .use(dateInFilename({
       override: false
     }))
@@ -21,6 +25,12 @@ metalsmith
         pattern: 'a/*.md',
         sortBy: 'filename',
         reverse: true
+      },
+      lastArticles: {
+        pattern: 'a/*.md',
+        sortBy: 'filename',
+        reverse: true,
+        limit: 3
       }
     }))
     .use(markdown({
@@ -46,8 +56,10 @@ metalsmith
 if (watch) {
   metalsmith.use(watch({
     paths: {
-      'src/**/*': true, // changed files: rebuild them
-      'layouts/**/*': '**/*' // changed layouts: rebuild all files
+      // changed sources: rebuild all (should be true to only rebuild changes but the
+      // in-place plugin apparently mistakingly fails not finding files to process
+      'src/**/*': '**/*',
+      'layouts/**/*': '**/*'
     }
   }));
 }

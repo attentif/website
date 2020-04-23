@@ -2,13 +2,6 @@
 inline: true
 ---
 
-<section class="notice">
-  <h2>attentif de retour en Suisse cet été?</h2>
-  <p>Le retour en Suisse avec ma famille a été fixé pour l’été 2020… si possible. L'activité est en pause d’ici là.<br>Tout le monde: ❤️</p>
-  <h2>attentif back to Switzerland this Summer?</h2>
-  <p>The move back to Switzerland with my family has been set for the Summer 2020… if possible. Activity is on hold until then.<br>Everyone: ❤️</p>
-</section>
-
 # What I do
 
 ## Software
@@ -45,4 +38,4 @@ Whether we're fully co-creating or I'm just giving a little hand, I look for the
 
 # Contact me
 
-I am [currently in Hong Kong, preparing my move back to Geneva](#notice). Workshop activity is paused for now, but I’m glad to discuss any collaboration that might follow.
+Workshop activity is paused for now, but I’m glad to discuss any collaboration that might follow.

@@ -68,6 +68,7 @@ $base-letter-width = 0.64rem // empirically determined
 
 $black = rgba(0, 0, 0, 0.9)
 $white = #FFF
+$accent = rgba(164, 0, 0, 0.75)
 $bold-weight = 500
 
 // Mixins: Type
@@ -116,6 +117,18 @@ inline()
 selection()
   color: #000
   background-color: rgba(255, 255, 0, 0.5)
+
+black-label-heading()
+  display: table
+  margin-top: -0.1em
+  margin-bottom: "calc(-0.1em + %s)" % base-lines(1)
+  margin-left: 0
+  margin-right: 0
+  border: 0.5px solid
+  border-color:  rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2)
+  padding: 0.1em 0 0.1em base-chars(1)
+  color: $white
+  background-color: $black
 
 // Elements
 
@@ -210,22 +223,33 @@ select, input, textarea, button
   console-font()
   color: $black
 
-/*button*/
-  /*margin: 0 0.75em 0 0*/
-  /*border: none*/
-  /*border-radius: 2px*/
-  /*padding: 0.25em*/
-  /*background-color: rgba(0, 0, 0, 0.1)*/
-  /*line-height: 1*/
-  /*font-variant: all-small-caps*/
-  /*cursor: pointer*/
-  /*&:hover, &:focus, &:active*/
-    /*color: $white*/
-    /*background-color: rgba(0, 0, 0, 0.7)*/
-
 a
+  margin: -0.2em (- base-chars(0.25))
+  border: 0.5px solid
+  border-color:  rgba(255, 255, 255, 0.5) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.2)
+  padding: 0.2em base-chars(0.25)
   color: $black
-  text-decoration: underline
+  background-color: rgba(0, 0, 0, 0.1)
+  text-decoration: none
+  &:hover, &:focus, &:active
+    color: $white
+    background-color: $accent
+
+nav
+  a
+    margin-left: (- base-chars(1))
+    margin-right: (- base-chars(1))
+    padding-left: base-chars(1)
+    padding-right: base-chars(1)
+    font-feature-settings: "ss03";
+    &:not(:last-child)
+      margin-right: base-chars(1)
+    &.home
+      letter-spacing: -0.16em // HACK: stick the pipe and arrow together
+      padding-right: @padding-right + 0.16em
+    .text
+      headings-font()
+      text-transform: lowercase
 
 em
   em-font()
@@ -299,7 +323,6 @@ $distanceFactor = 11
     display: block
     clear: both
 
-// HACK: assumes .inline
 .notice
   padding: base-lines(1) base-chars(1)
   border-top: 1em solid $black
@@ -307,30 +330,39 @@ $distanceFactor = 11
   border-left: base-chars(1) solid $black
   border-right: base-chars(1) solid $black
   margin: 0 (- base-chars(2)) ("calc(%s - 1em)" % base-lines(3))
-  h2
-    color: $white
-    background-color: $black
-    &:not(:first-child)::before
-      white-space: pre-wrap
-      content: '\A\A'
+  h1
+    black-label-heading()
+    margin-top: (@margin-top - base-lines(1))
 
-.page-title
-  display: table
-  padding-left: base-chars(1)
-  margin: 0 (- base-chars(1)) base-lines(1)
-  color: $white
-  background-color: $black
+.page-header
+  h1
+    black-label-heading()
+    margin-left: (@margin-left - base-chars(1))
+    margin-right: (@margin-right - base-chars(1))
+  time
+    display: block
+    margin: (- base-lines(1)) 0 base-lines(1) 0
 
 ul.articles-list
-  a
-    headings-font()
-    text-transform: lowercase
+  padding: 0
+  li
+    margin-bottom: base-lines(1)
+    &::before
+      content: none
+  h2
+    inline()
   time
     margin-left: base-chars(1)
     &::before
       content: '('
     &::after
       content: ')'
+
+nav.more
+  text-align: right
+
+.workshop-name
+  console-font()
 
 ul.coordinates
   display: inline-block
@@ -347,8 +379,6 @@ ul.coordinates
       content: none
     &:not(:first-child)::before
       content: '\00a0∙\00a0'
-  .workshop-name
-    console-font()
 
 #video-container
   position: fixed
@@ -384,7 +414,6 @@ ul.coordinates
     padding: 0 base-chars(8) base-lines(1)
   #header .logo
     width: 50%
-
 
 // ------------
 // PRINT STYLES

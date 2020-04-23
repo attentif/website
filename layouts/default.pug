@@ -16,22 +16,52 @@ html.no-js(lang='en')
     #main-container.fade
       header#header
         img.logo(src='/media/logo-at.svg', alt='at*')
-      main#main(class=`${inline ? 'inline' : ''}`)
+      main#main
+        if path
+          nav#top-nav
+            // add 'home' link
+            a.home(href='/') |←
+            - let splitPath = path.split('/')
+            if splitPath.length > 1
+              // add 'parent' link
+              a(href=`/${splitPath.slice(0, -1).join('/')}`) ←
         if title
-          h1.page-title
-            != title
-        if date
-          time(datetime=date)
-            != date.toLocaleDateString()
-        != contents
+          header.page-header
+            h1
+              != title
+            if date
+              time(datetime=date)
+                = helpers.formatDate(date)
+        if !path
+          // i.e. home
+          section.notice
+            h1 What’s last
+            ul.articles-list
+              for a in lastArticles
+                li
+                  // chop extension off path as we use permalinks
+                  a(href=`/${helpers.trimFileExtension(a.path)}`)
+                    h2
+                      != a.title
+                  time(datetime=a.date)
+                    != helpers.formatDate(a.date)
+                  p
+                    != a.description
+            nav.more
+              a(href='/a')
+                = '→ '
+                span.text See all
+        section(class=`${inline ? 'inline' : ''}`)
+          != contents
       footer#footer
         ul.coordinates
-          li.workshop-name attentif*
+          li.workshop-name
+            a(href="/") attentif*
           li.name Simon Goumaz
           //li.address
           //  a(href="http://www.openstreetmap.org/?mlat=22.40114&mlon=113.97977#map=16/22.40115/113.97977&layers=T", target="_blank", title="Open map") G/F, 92 San Hui Village<br>Tuen Mun<br>New Territories, Hong Kong
           li.phone
-            a(href="tel:+85298267290") +852 9826 7290
+            a(href="tel:+85298267290") +852&nbsp;9826&nbsp;7290
           li.email
             a(href="mailto:simon@attentif.ch") simon@attentif.ch
           li
