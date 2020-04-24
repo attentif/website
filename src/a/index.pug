@@ -1,11 +1,11 @@
 ---
-title: Articles
+title: Published stuff
 ---
 ul.articles-list
   for a in articles
     li
       // chop extension off path as we use permalinks
-      a(href=`/${a.path.split('.').slice(0, -1).join('.')}`)
+      a(href=`/${helpers.trimFileExtension(a.path)}`)
         h2
           != a.title
       time(datetime=a.date)
