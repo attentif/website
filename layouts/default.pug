@@ -19,7 +19,7 @@ html.no-js(lang='en')
       main#main
         if helpers.isHome(path)
           section.notice
-            h1 What’s last
+            h1 Last published
             ul.articles-list
               for a in lastArticles
                 li
@@ -59,15 +59,15 @@ html.no-js(lang='en')
             a(href="/") attentif*
           li.name Simon Goumaz
           //li.address
-          //  a(href="http://www.openstreetmap.org/?mlat=22.40114&mlon=113.97977#map=16/22.40115/113.97977&layers=T", target="_blank", title="Open map") G/F, 92 San Hui Village<br>Tuen Mun<br>New Territories, Hong Kong
+          //  a.external(href=address.mapURL, title="Open map")!= address.htmlText
           li.phone
             a(href="tel:+85298267290") +852&nbsp;9826&nbsp;7290
           li.email
             a(href="mailto:simon@attentif.ch") simon@attentif.ch
           li
-            a(href="https://github.com/sgoumaz", target="_blank") GitHub
+            a.external(href=linkURLs.gitHub) GitHub
           li
-            a(href="https://www.linkedin.com/pub/simon-goumaz/1/11b/414", target="_blank") LinkedIn
+            a.external(href=linkURLs.linkedIn) LinkedIn
 
     #video-container
       video#video.fade(autoplay loop)

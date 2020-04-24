@@ -5,6 +5,7 @@ const metalsmith = require('metalsmith')(__dirname),
     inPlace = require('metalsmith-in-place'),
     layouts = require('metalsmith-layouts'),
     markdown = require('metalsmith-markdownit'),
+    metadata = require('./metadata'),
     nib = require('nib'),
     permalinks = require('metalsmith-permalinks'),
     stylus = require('metalsmith-stylus'),
@@ -14,9 +15,9 @@ metalsmith
     .source('./src')
     .destination('./build')
     .clean(false) // to keep .git, CNAME etc.
-    .metadata({
+    .metadata(Object.assign(metadata, {
       helpers: helpers
-    })
+    }))
     .use(dateInFilename({
       override: false
     }))
@@ -33,14 +34,14 @@ metalsmith
         limit: 3
       }
     }))
+    .use(inPlace({
+      suppressNoFilesError: true,
+      setFilename: true
+    }))
     .use(markdown({
       html: true,
       linkify: true,
       typographer: true
-    }))
-    .use(inPlace({
-      suppressNoFilesError: true,
-      setFilename: true
     }))
     .use(permalinks({
       relative: false
