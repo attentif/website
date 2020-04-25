@@ -5,10 +5,13 @@ ul.articles-list
   for a in articles
     li
       // chop extension off path as we use permalinks
-      a(href=`/${helpers.trimFileExtension(a.path)}`)
+      a(href=`/${helpers.trimFileExtensions(a.path)}`)
         h2
           != a.title
       time(datetime=a.date)
         != helpers.formatDate(a.date)
       p
         != a.description
+
+if articles.length < 4
+  p Yes that’s all there is for now.

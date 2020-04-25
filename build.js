@@ -23,12 +23,12 @@ metalsmith
     }))
     .use(collections({
       articles: {
-        pattern: 'a/*.md',
+        pattern: 'a/*.md*',
         sortBy: 'filename',
         reverse: true
       },
       lastArticles: {
-        pattern: 'a/*.md',
+        pattern: 'a/*.md*',
         sortBy: 'filename',
         reverse: true,
         limit: 3

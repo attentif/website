@@ -23,8 +23,8 @@ html.no-js(lang='en')
             ul.articles-list
               for a in lastArticles
                 li
-                  // chop extension off path as we use permalinks
-                  a(href=`/${helpers.trimFileExtension(a.path)}`)
+                  // chop extension off as we use permalinks
+                  a(href=`/${helpers.trimFileExtensions(a.path)}`)
                     h2
                       != a.title
                   time(datetime=a.date)

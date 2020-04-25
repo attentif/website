@@ -1,15 +1,38 @@
 module.exports = {
-  isHome: function(path) {
-    return !path;
-  },
-  trimFileExtension: function(path) {
-    const sep = '.';
-    if (path.indexOf(sep) == -1) {
-      return path;
-    }
-    return path.split(sep).slice(0, -1).join(sep);
-  },
-  formatDate: function(d) {
-    return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`; // date.toLocaleDateString('fr-CH', options)
-  }
+  isHome: isHome,
+  trimFileExtensions: trimFileExtensions,
+  getMediaPath: getMediaPath,
+  formatDate: formatDate
 };
+
+function isHome(path) {
+  return !path;
+}
+
+function trimFileExtensions(path) {
+  const i = path.indexOf('.');
+  if (i === -1) {
+    return path;
+  }
+  return path.substr(0, i);
+}
+
+/**
+ * Returns the full media file path for the given piece of content and file name.
+ * @returns {string}
+ */
+function getMediaPath(contentPath, filename) {
+  return [
+    `/media`,
+    _trimLeadingTrailingSlashes(trimFileExtensions(contentPath)),
+    filename
+  ].join('/');
+}
+
+function formatDate(d) {
+  return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
+}
+
+function _trimLeadingTrailingSlashes(s) {
+  return s.replace(/^\/+/, '').replace(/\/+$/, '');
+}
