@@ -31,7 +31,7 @@ metalsmith
         pattern: 'a/*.md*',
         sortBy: 'filename',
         reverse: true,
-        limit: 3
+        limit: metadata.lastArticlesCount
       }
     }))
     .use(inPlace({

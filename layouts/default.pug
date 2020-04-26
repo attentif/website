@@ -31,10 +31,11 @@ html.no-js(lang='en')
                     != helpers.formatDate(a.date)
                   p
                     != a.description
-            nav.more
-              a(href='/a', title='All published stuff')
-                = '→ '
-                span.text See all
+            unless articles.length < lastArticlesCount
+              nav.more
+                a(href='/a', title='All published stuff')
+                  = '→ '
+                  span.text See all
         else
           // not home: add minimal nav
           nav#top-nav
