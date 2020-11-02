@@ -31,7 +31,7 @@ html.no-js(lang='en')
                     != helpers.formatDate(a.date)
                   p
                     != a.description
-            unless articles.length < lastArticlesCount
+            unless articles.length <= lastArticlesCount
               nav.more
                 a(href='/a', title='All published stuff')
                   = '→ '
@@ -62,7 +62,7 @@ html.no-js(lang='en')
           //li.address
           //  a.external(href=address.mapURL, title="Open map")!= address.htmlText
           li.phone
-            a(href="tel:+85298267290") +852&nbsp;9826&nbsp;7290
+            a(href="tel:+41793857120") +41&nbsp;79&nbsp;385&nbsp;71&nbsp;20
           li.email
             a(href="mailto:simon@attentif.ch") simon@attentif.ch
           li
