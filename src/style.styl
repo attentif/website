@@ -268,6 +268,11 @@ abbr
   headings-font()
   font-variant-caps: all-small-caps;
 
+hr
+  margin: 1rem 0
+  border: 0
+  border-bottom: 0.5pt dotted
+
 // --------------
 // WEBSITE STYLES
 // --------------
@@ -468,7 +473,7 @@ ul.coordinates
       background-position: bottom right
       background-repeat: no-repeat
     @right-bottom
-      content: 'Simon Goumaz ∙ CV'
+      content: string(doc-title)
       overflow: visible
       white-space: nowrap
       margin: 0 1em 1.15cm 0
@@ -501,6 +506,7 @@ ul.coordinates
     counter-reset: figure-num;
     counter-reset: footnote-num;
   h1.title
+    string-set: doc-title content()
     margin-left: -4.6cm // TODO once Prince supports it (v14), change to: calc(var(--left-margin) * -1)
     margin-bottom: 5.4rem
     font-family: 'Atlas Grotesk'
@@ -527,6 +533,8 @@ ul.coordinates
     font-weight: 400
     font-variant: prince-opentype(smcp, c2sc)
     letter-spacing: 0.05em
+  h1.label, h2.label, h3.label
+    margin: 0
   p > .label
     font-weight: 300
     letter-spacing: normal
