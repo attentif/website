@@ -1,5 +1,4 @@
-.idea
+.code_style
 build
 node_modules
 npm-debug.log
-website.iml

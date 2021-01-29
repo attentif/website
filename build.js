@@ -1,58 +1,60 @@
-const metalsmith = require('metalsmith')(__dirname),
-    collections = require('metalsmith-collections'),
-    dateInFilename = require('metalsmith-date-in-filename'),
-    helpers = require('./helpers'),
-    inPlace = require('metalsmith-in-place'),
-    layouts = require('metalsmith-layouts'),
-    markdown = require('metalsmith-markdownit'),
-    metadata = require('./metadata'),
-    nib = require('nib'),
-    permalinks = require('metalsmith-permalinks'),
-    stylus = require('metalsmith-stylus'),
-    watch = process.argv[2] === 'watch' ? require('metalsmith-watch') : null;
+const metalsmith = require('metalsmith')(__dirname);
+const collections = require('metalsmith-collections');
+const dateInFilename = require('metalsmith-date-in-filename');
+const helpers = require('./helpers');
+const inPlace = require('metalsmith-in-place');
+const layouts = require('metalsmith-layouts');
+const markdown = require('metalsmith-markdownit');
+const metadata = require('./metadata');
+const nib = require('nib');
+const permalinks = require('metalsmith-permalinks');
+const stylus = require('metalsmith-stylus');
+const watch = process.argv[2] === 'watch' ? require('metalsmith-watch') : null;
 
 metalsmith
-    .source('./src')
-    .destination('./build')
-    .clean(false) // to keep .git, CNAME etc.
-    .metadata(Object.assign(metadata, {
-      helpers: helpers
-    }))
-    .use(dateInFilename({
-      override: false
-    }))
-    .use(collections({
-      articles: {
-        pattern: 'a/*.md*',
-        sortBy: 'filename',
-        reverse: true
-      },
-      lastArticles: {
-        pattern: 'a/*.md*',
-        sortBy: 'filename',
-        reverse: true,
-        limit: metadata.lastArticlesCount
-      }
-    }))
-    .use(inPlace({
-      suppressNoFilesError: true,
-      setFilename: true
-    }))
-    .use(markdown({
-      html: true,
-      linkify: true,
-      typographer: true
-    }))
-    .use(permalinks({
-      relative: false
-    }))
-    .use(layouts({
-      default: 'default.pug',
-      pattern: '**/*.html'
-    }))
-    .use(stylus({
-      use: [nib()]
-    }));
+  .source('./src')
+  .destination('./build')
+  .clean(false) // to keep .git, CNAME etc.
+  .metadata(Object.assign(metadata, {
+    helpers: helpers
+  }))
+  .ignore(['_*'])
+  .use(dateInFilename({
+    override: false
+  }))
+  .use(collections({
+    articles: {
+      pattern: 'a/*.md*',
+      sortBy: 'filename',
+      reverse: true
+    },
+    lastArticles: {
+      pattern: 'a/*.md*',
+      sortBy: 'filename',
+      reverse: true,
+      limit: metadata.lastArticlesCount
+    }
+  }))
+  .use(inPlace({
+    suppressNoFilesError: true,
+    setFilename: true
+  }))
+  .use(markdown({
+    html: true,
+    linkify: true,
+    typographer: true
+  }))
+  .use(permalinks({
+    relative: false
+  }))
+  .use(layouts({
+    directory: 'src/_layouts',
+    default: 'default.pug',
+    pattern: '**/*.html'
+  }))
+  .use(stylus({
+    use: [nib()]
+  }));
 
 if (watch) {
   metalsmith.use(watch({

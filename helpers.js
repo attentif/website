@@ -5,11 +5,11 @@ module.exports = {
   formatDate: formatDate
 };
 
-function isHome(path) {
+function isHome (path) {
   return !path;
 }
 
-function trimFileExtensions(path) {
+function trimFileExtensions (path) {
   const i = path.indexOf('.');
   if (i === -1) {
     return path;
@@ -21,18 +21,18 @@ function trimFileExtensions(path) {
  * Returns the full media file path for the given piece of content and file name.
  * @returns {string}
  */
-function getMediaPath(contentPath, filename) {
+function getMediaPath (contentPath, filename) {
   return [
-    `/media`,
+    '/media',
     _trimLeadingTrailingSlashes(trimFileExtensions(contentPath)),
     filename
   ].join('/');
 }
 
-function formatDate(d) {
+function formatDate (d) {
   return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
 }
 
-function _trimLeadingTrailingSlashes(s) {
+function _trimLeadingTrailingSlashes (s) {
   return s.replace(/^\/+/, '').replace(/\/+$/, '');
 }
