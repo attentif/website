@@ -6,6 +6,6 @@ module.exports = {
   },
   linkURLs: {
     gitHub: 'https://github.com/sgoumaz',
-    linkedIn: 'https://www.linkedin.com/pub/simon-goumaz/1/11b/414'
+    linkedIn: 'https://www.linkedin.com/in/simon-goumaz/'
   }
 };

@@ -4,7 +4,7 @@ description: Snapshot of a time of changes and unknowns.
 inline: true
 ---
 
-_Originally front page content; kept here for now as a snapshot of that time's perspective._
+[✎]{.icon} _This was originally front page content. I keep it here for now as a snapshot of that time's perspective (at the risk of some confusion for the reader)._
 
 ---
 

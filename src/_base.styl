@@ -170,6 +170,9 @@ h1
   text-transform: uppercase
   letter-spacing: base-chars(1)
 
+h1.strong
+  black-label-heading()
+
 h2
   block()
   margin-bottom: 0
@@ -180,6 +183,10 @@ p
   block() // TODO: remove?
   margin-top: 0
   text-font()
+
+p + p.continue-flow
+  margin-top: -(base-lines(1))
+  text-indent: base-chars(3)
 
 ul
   margin: 0
@@ -262,7 +269,8 @@ em
 
 strong
   em-font()
-  // TODO: more emphasis e.g. underline?
+  text-decoration: underline
+  text-decoration-thickness: 0.111111111rem
 
 abbr
   headings-font()
@@ -272,3 +280,6 @@ hr
   margin: 1rem 0
   border: 0
   border-bottom: 0.05rem dotted
+
+.arrow
+  text-font()
