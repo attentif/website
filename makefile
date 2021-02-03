@@ -20,4 +20,3 @@ build: node_modules $(source_files)
 
 build-watch: node_modules $(source_files)
 	node build.js watch
-	@touch $@

@@ -4,7 +4,9 @@ const dateInFilename = require('metalsmith-date-in-filename');
 const helpers = require('./helpers');
 const inPlace = require('metalsmith-in-place');
 const layouts = require('metalsmith-layouts');
-const markdown = require('metalsmith-markdownit');
+const markdown = require('@attentif/metalsmith-markdownit');
+const markdownBracketedSpans = require('markdown-it-bracketed-spans');
+const markdownAttrs = require('markdown-it-attrs');
 const metadata = require('./metadata');
 const nib = require('nib');
 const permalinks = require('metalsmith-permalinks');
@@ -25,12 +27,12 @@ metalsmith
   .use(collections({
     articles: {
       pattern: 'a/*.md*',
-      sortBy: 'filename',
+      sortBy: 'date',
       reverse: true
     },
     lastArticles: {
       pattern: 'a/*.md*',
-      sortBy: 'filename',
+      sortBy: 'date',
       reverse: true,
       limit: metadata.lastArticlesCount
     }
@@ -43,7 +45,7 @@ metalsmith
     html: true,
     linkify: true,
     typographer: true
-  }))
+  }).use(markdownBracketedSpans).use(markdownAttrs))
   .use(permalinks({
     relative: false
   }))
