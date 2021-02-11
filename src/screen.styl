@@ -70,7 +70,7 @@ $distanceFactor = 11
   border-bottom: 1em solid $black
   border-left: base-chars(1) solid $black
   border-right: base-chars(1) solid $black
-  margin: 0 (- base-chars(2)) ("calc(%s - 1em)" % base-lines(3))
+  margin: ("calc(%s - 1em)" % base-lines(3)) (- base-chars(2))
   h1
     black-label-heading()
     margin-top: (@margin-top - base-lines(1))
@@ -103,10 +103,12 @@ nav.more
   text-align: right
 
 .icon
+  font-size: 1.3em
+
+p > .icon.marker
   display: block
   position: absolute
   left: 0
-  font-size: 1.3em
 
 .workshop-name
   console-font()

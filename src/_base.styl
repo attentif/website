@@ -249,20 +249,26 @@ a
     content: '↗︎'
     font-size: 0.5em
 
-nav
-  a
-    margin-left: (- base-chars(1))
-    margin-right: (- base-chars(1))
-    padding-left: base-chars(1)
-    padding-right: base-chars(1)
-    &:not(:last-child)
-      margin-right: base-chars(1)
-    &.home
-      letter-spacing: -0.16em // HACK: stick the pipe and arrow together
-      padding-right: @padding-right + 0.16em
-    .text
-      headings-font()
-      text-transform: lowercase
+a.action
+  padding-left: base-chars(1)
+  padding-right: base-chars(1)
+  .text
+    headings-font()
+    text-transform: lowercase
+
+nav a
+  margin-left: (- base-chars(1))
+  margin-right: (- base-chars(1))
+  padding-left: base-chars(1)
+  padding-right: base-chars(1)
+  &:not(:last-child)
+    margin-right: base-chars(1)
+  &.home
+    letter-spacing: -0.16em // HACK: stick the pipe and arrow together
+    padding-right: @padding-right + 0.16em
+  .text
+    headings-font()
+    text-transform: lowercase
 
 em
   em-font()

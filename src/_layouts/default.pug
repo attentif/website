@@ -17,6 +17,26 @@ html.no-js(lang='en')
       header#header
         img.logo(src='/media/logo-at.svg', alt='at*')
       main#main
+        if !helpers.isHome(path)
+          // not home: add minimal nav
+          nav#top-nav
+            // add 'home' link
+            a.home(href='/', title='Back home') |←
+            - let splitPath = path.split('/')
+            if splitPath.length > 1
+              // add 'parent' link
+              a(href=`/${splitPath.slice(0, -1).join('/')}`, title='Back to published stuff') ←
+        if title
+          header.page-header
+            h1
+              != title
+            if date
+              time(datetime=date)
+                = helpers.formatDate(date)
+
+        section(class=`${inline ? 'inline' : ''}`)
+          != contents
+
         if helpers.isHome(path)
           section.notice
             h1 Last published
@@ -36,24 +56,7 @@ html.no-js(lang='en')
                 a(href='/a', title='All published stuff')
                   = '→ '
                   span.text See all
-        else
-          // not home: add minimal nav
-          nav#top-nav
-            // add 'home' link
-            a.home(href='/', title='Back home') |←
-            - let splitPath = path.split('/')
-            if splitPath.length > 1
-              // add 'parent' link
-              a(href=`/${splitPath.slice(0, -1).join('/')}`, title='Back to published stuff') ←
-        if title
-          header.page-header
-            h1
-              != title
-            if date
-              time(datetime=date)
-                = helpers.formatDate(date)
-        section(class=`${inline ? 'inline' : ''}`)
-          != contents
+
       footer#footer
         ul.coordinates
           li.workshop-name
