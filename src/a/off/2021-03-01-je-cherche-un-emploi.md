@@ -1,7 +1,7 @@
 ---
 title: Je cherche un emploi
 inline: true
-headerHTML: '<span style="font-size: 50vw;">❤️</span>'
+headerHTML: '<!-- none -->'
 background:
   img: '/media/branches.jpg'
 ---
