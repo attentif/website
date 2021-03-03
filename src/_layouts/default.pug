@@ -15,16 +15,19 @@ html.no-js(lang='en')
   body
     #main-container.fade
       header#header
-        img.logo(src='/media/logo-at.svg', alt='at*')
+        if headerHTML
+          != headerHTML
+        else
+          img(src='/media/logo-at.svg', alt='at*')
       main#main
         if !helpers.isHome(path)
-          // not home: add minimal nav
+          - // not home: add minimal nav
           nav#top-nav
-            // add 'home' link
+            - // add 'home' link
             a.home(href='/', title='Back home') |←
             - let splitPath = path.split('/')
-            if splitPath.length > 1
-              // add 'parent' link
+            if splitPath.length == 2
+              - // add 'parent' link
               a(href=`/${splitPath.slice(0, -1).join('/')}`, title='Back to published stuff') ←
         if title
           header.page-header
@@ -32,7 +35,7 @@ html.no-js(lang='en')
               != title
             if date
               time(datetime=date)
-                = helpers.formatDate(date)
+                != helpers.formatDate(date)
 
         section(class=`${inline ? 'inline' : ''}`)
           != contents
@@ -43,7 +46,7 @@ html.no-js(lang='en')
             ul.articles-list
               for a in lastArticles
                 li
-                  // chop extension off as we use permalinks
+                  - // chop extension off as we use permalinks
                   a(href=`/${helpers.trimFileExtensions(a.path)}`)
                     h2
                       != a.title
@@ -62,8 +65,8 @@ html.no-js(lang='en')
           li.workshop-name
             a(href="/", title='Home') attentif*
           li.name Simon Goumaz
-          //li.address
-          //  a.external(href=address.mapURL, title="Open map")!= address.htmlText
+          - //li.address
+          - //  a.external(href=address.mapURL, title="Open map")!= address.htmlText
           li.phone
             a(href="tel:+41793857120") +41&nbsp;79&nbsp;385&nbsp;71&nbsp;20
           li.email
@@ -73,14 +76,33 @@ html.no-js(lang='en')
           li
             a.external(href=linkURLs.linkedIn) LinkedIn
 
-    #video-container
-      video#video.fade(muted autoplay loop)
-        source(src='/media/branches.mp4', type='video/mp4')
-        source(src='/media/branches.ogv', type='video/ogg')
-      img#video-fallback(src='/media/branches.jpg', alt='branches dans la brise')
+    if background != 'none'
+      #bg-container
+        - let mp4Src = ''
+        - let oggSrc = ''
+        - let imgSrc = ''
+        if background
+          - // use page-set background
+          if background.mp4
+            - mp4Src = background.mp4
+          if background.ogg
+            - oggSrc = background.ogg
+          if background.img
+            - imgSrc = background.img
+        else
+          - // use default
+          - mp4Src = '/media/branches.mp4'
+          - oggSrc = '/media/branches.ogv'
+          - imgSrc = '/media/branches.jpg'
+        if mp4Src || oggSrc
+          video#bg-video.fade(muted autoplay loop)
+            source(src=mp4Src, type='video/mp4')
+            source(src=oggSrc, type='video/ogg')
+        if imgSrc
+          img#bg-img(src='/media/branches.jpg', alt='branches dans la brise')
 
     script(src='/scripts/index.js')
-    // Matomo analytics
+    - // Matomo analytics
     script(type="text/javascript").
       if (window.location.hostname.indexOf('attentif.ch') !== -1) {
         var _paq = window._paq = window._paq || [];

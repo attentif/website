@@ -1,14 +1,14 @@
 /* global jQuery, Modernizr */
 
 jQuery(document).ready(function ($) {
-  if (Modernizr.touch || !Modernizr.video) {
+  var $video = $('#bg-video'); // eslint-disable-line no-var
+  if (Modernizr.touch || !Modernizr.video || !$video.length) {
     // don't play background video
-    var $fallback = $('#video-fallback'); // eslint-disable-line no-var
+    var $fallback = $('#bg-img'); // eslint-disable-line no-var
     $fallback.css('display', 'block');
     $fallback.addClass('visible');
   } else {
     // all right, playback video
-    var $video = $('#video'); // eslint-disable-line no-var
     $video.css('display', 'block');
     $video.bind('play', function () {
       $video.addClass('visible');
