@@ -2,8 +2,6 @@
 title: Je cherche un emploi
 inline: true
 headerHTML: '<!-- none -->'
-background:
-  img: '/media/branches.jpg'
 ---
 
 [✎]{.icon .marker} _Pourquoi publier ça ici, pourquoi ne pas juste chercher un emploi par annonces, agences, etc.?_ En bref: Annonces et agences servent plutôt à placer des compétences liées à une expérience. En passant ce message à ceux qui me connaissent, je cherche à me placer _moi_… avec peut-être plus de chances d'ouvrir des voies moins balisées.
@@ -22,7 +20,7 @@ Tout est ouvert, mais l'informatique (software) est le domaine de ma formation d
 
 ## Rôle
 
-Coordinateur ou directeur d'équipe de développement software est probablement le rôle qui paraîtrait le plus naturel à ce stade de mon parcours, mais là encore tout est ouvert. Dans l'idéal je veux non seulement contribuer au _quoi_ mais aussi au _pourquoi_ et _comment_. Et s'il faut bouger et travailler avec son corps c'est bienvenu (dehors par tous les temps encore plus).
+Coordinateur ou directeur d'équipe de développement software est le rôle que j'ai tenu dans mes derniers postes, mais là encore c'est totalement ouvert. Dans l'idéal je veux non seulement contribuer au _quoi_ mais aussi au _pourquoi_ et _comment_. Et s'il faut bouger et travailler avec son corps c'est bienvenu (dehors par tous les temps encore plus).
 
 ## Travailler ensemble
 
