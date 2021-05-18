@@ -1,0 +1,22 @@
+@import './print'
+
+// ------------
+// PRINT STYLES (temp: will eventually move to a separate package)
+// ------------
+
+@media print
+  @page
+    margin: 2.3cm 2.7cm 1.15cm 1.15cm
+    @bottom-right
+      content: ''
+    @right-bottom
+      content: string(doc-title) !important
+      margin: 0 1em 2.7cm 0
+      font-family: 'Atlas Grotesk' !important
+      font-variant: prince-opentype(smcp, c2sc) !important
+  @page:first
+    @right-bottom
+      content: string(doc-title)
+  h1.title
+    string-set: doc-title content()
+    display: none
